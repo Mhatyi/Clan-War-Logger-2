@@ -10,18 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # 1️⃣ Checkout repo and enable pushing
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        persist-credentials: true  # Allows git push using GITHUB_TOKEN
 
+    # 2️⃣ Setup Python
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.x'
 
+    # 3️⃣ Install dependencies
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    # 🔹 Pre-check secrets
+    # 4️⃣ Pre-check secrets
     - name: Verify secrets
       run: |
         if [ -z "${API_TOKEN}" ]; then
@@ -37,6 +42,7 @@ jobs:
         API_TOKEN: ${{ secrets.API_TOKEN }}
         CLAN_TAG: ${{ secrets.CLAN_TAG }}
 
+    # 5️⃣ Run the Python war logger
     - name: Run war logger
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }}
@@ -47,6 +53,7 @@ jobs:
         PROXY_PORT: ${{ secrets.PROXY_PORT }}
       run: python war_log.py
 
+    # 6️⃣ Commit and push the updated war log
     - name: Commit & push log file
       run: |
         git config user.name "github-actions"
