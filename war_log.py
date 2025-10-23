@@ -1,4 +1,5 @@
 import os
+import sys
 import requests
 from datetime import datetime
 
@@ -9,12 +10,22 @@ API_TOKEN = os.getenv("API_TOKEN")
 CLAN_TAG = os.getenv("CLAN_TAG")
 LOG_FILE = "war_log.md"  # File to store daily logs
 
-# Optional proxy (for local testing or Webshare)
+# Optional proxy
 PROXY_USERNAME = os.getenv("PROXY_USERNAME")
 PROXY_PASSWORD = os.getenv("PROXY_PASSWORD")
 PROXY_IP = os.getenv("PROXY_IP")
 PROXY_PORT = os.getenv("PROXY_PORT")
 
+# ----------------- VALIDATION -----------------
+if not API_TOKEN:
+    print("❌ API_TOKEN is missing! Please check your GitHub secret.")
+    sys.exit(1)
+
+if not CLAN_TAG:
+    print("❌ CLAN_TAG is missing! Please check your GitHub secret.")
+    sys.exit(1)
+
+# Setup proxies if provided
 if PROXY_IP and PROXY_PORT:
     proxies = {
         "http": f"http://{PROXY_USERNAME}:{PROXY_PASSWORD}@{PROXY_IP}:{PROXY_PORT}",
@@ -22,42 +33,40 @@ if PROXY_IP and PROXY_PORT:
     }
 else:
     proxies = None
-# ------------------------------------------
 
+# ----------------- REQUEST HEADERS -----------------
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
-# 1️⃣ Get current clan members (filter out kicked members)
-members_url = f"https://api.clashroyale.com/v1/clans/%23{CLAN_TAG}/members"
-try:
-    response = requests.get(members_url, headers=headers, proxies=proxies)
-    response.raise_for_status()
-    members_data = response.json()
-except Exception as e:
-    print(f"❌ Error fetching clan members: {e}")
-    exit(1)
+def fetch_json(url):
+    """Fetch JSON data from Clash Royale API with error handling."""
+    try:
+        response = requests.get(url, headers=headers, proxies=proxies, timeout=10)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.HTTPError as e:
+        print(f"❌ HTTP error while fetching {url}: {e}")
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Request error while fetching {url}: {e}")
+    sys.exit(1)
 
-current_member_tags = {m['tag'] for m in members_data['items']}
+# 1️⃣ Get current clan members
+members_url = f"https://api.clashroyale.com/v1/clans/%23{CLAN_TAG}/members"
+members_data = fetch_json(members_url)
+current_member_tags = {m['tag'] for m in members_data.get('items', [])}
 
 # 2️⃣ Get current war participants
 war_url = f"https://api.clashroyale.com/v1/clans/%23{CLAN_TAG}/currentriverrace"
-try:
-    response = requests.get(war_url, headers=headers, proxies=proxies)
-    response.raise_for_status()
-    war_data = response.json()
-except Exception as e:
-    print(f"❌ Error fetching war data: {e}")
-    exit(1)
+war_data = fetch_json(war_url)
 
 # 3️⃣ Build log entry
 date_str = datetime.utcnow().strftime("%Y-%m-%d")
-report_lines = []
+report_lines = [
+    f"## 📅 {date_str} — Clan War Deck Usage (Current Members Only)\n",
+    "| Player | Decks Used | Fame |",
+    "|--------|------------|------|"
+]
 
-report_lines.append(f"## 📅 {date_str} — Clan War Deck Usage (Current Members Only)")
-report_lines.append("")
-report_lines.append("| Player | Decks Used | Fame |")
-report_lines.append("|--------|------------|------|")
-
-for p in sorted(war_data["clan"]["participants"], key=lambda x: x["name"].lower()):
+for p in sorted(war_data.get("clan", {}).get("participants", []), key=lambda x: x["name"].lower()):
     if p['tag'] in current_member_tags:
         name = p['name']
         decks_used = p.get("decksUsed", 0)
