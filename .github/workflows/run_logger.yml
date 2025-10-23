@@ -1,0 +1,40 @@
+name: Daily Clash Royale War Logger
+
+on:
+  schedule:
+    - cron: "35 09 * * *"  # Runs every day at 09:35 UTC (~11:35 AM in Hungary)
+  workflow_dispatch:        # Allows manual runs from GitHub
+
+jobs:
+  run-logger:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run war logger
+      env:
+        API_TOKEN: ${{ secrets.API_TOKEN }}
+        CLAN_TAG: ${{ secrets.CLAN_TAG }}
+        PROXY_USERNAME: ${{ secrets.PROXY_USERNAME }}
+        PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }}
+        PROXY_IP: ${{ secrets.PROXY_IP }}
+        PROXY_PORT: ${{ secrets.PROXY_PORT }}
+      run: python war_log.py
+
+    - name: Commit & push log file
+      run: |
+        git config user.name "github-actions"
+        git config user.email "actions@github.com"
+        git add war_log.md || true
+        git commit -m "Update war log" || true
+        git push
