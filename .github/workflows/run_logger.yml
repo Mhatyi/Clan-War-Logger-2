@@ -2,8 +2,8 @@ name: Daily Clash Royale War Logger
 
 on:
   schedule:
-    - cron: "35 09 * * *"  # Runs every day at 09:35 UTC (~11:35 AM in Hungary)
-  workflow_dispatch:        # Allows manual runs from GitHub
+    - cron: "35 09 * * *"  # Runs every day at 09:35 UTC (~11:35 AM Hungary)
+  workflow_dispatch:        # Allows manual runs
 
 jobs:
   run-logger:
@@ -20,6 +20,22 @@ jobs:
 
     - name: Install dependencies
       run: pip install -r requirements.txt
+
+    # 🔹 Pre-check secrets
+    - name: Verify secrets
+      run: |
+        if [ -z "${API_TOKEN}" ]; then
+          echo "❌ API_TOKEN is missing!"
+          exit 1
+        fi
+        if [ -z "${CLAN_TAG}" ]; then
+          echo "❌ CLAN_TAG is missing!"
+          exit 1
+        fi
+        echo "✅ Secrets are present"
+      env:
+        API_TOKEN: ${{ secrets.API_TOKEN }}
+        CLAN_TAG: ${{ secrets.CLAN_TAG }}
 
     - name: Run war logger
       env:
