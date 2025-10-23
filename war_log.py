@@ -1,24 +1,27 @@
 import os
-print("Current working directory:", os.getcwd())
 import requests
 from datetime import datetime
-import os
+
+print("Current working directory:", os.getcwd())
 
 # ----------------- CONFIG -----------------
-API_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjQ5YjRkYmQ1LWRkMDUtNGQwNS05NzVhLTAxOTEyNDY3ZDY1OCIsImlhdCI6MTc2MTE2MTM4MCwic3ViIjoiZGV2ZWxvcGVyL2M2ZGUwMTQxLTQxNmQtOGJmMy02YzViLTNlNzQ1MWY4MWRkOCIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyIxNDIuMTExLjQ4LjI1MyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.nNASqJA5zlBTade8CcJPLwd6EkMbb9Cj6KCMhzgNdcpzgDcpsNQbAVqXYG9KxENbHlB7nll228WNh1DHIZsw8Q"      # Clash Royale API token
-CLAN_TAG = "QJQLJG9R"        # Clan tag without the #
-LOG_FILE = "war_log.md"                # File to store daily logs
+API_TOKEN = os.getenv("API_TOKEN")
+CLAN_TAG = os.getenv("CLAN_TAG")
+LOG_FILE = "war_log.md"  # File to store daily logs
 
-# Webshare proxy settings
-PROXY_USERNAME = "dwojxhku"
-PROXY_PASSWORD = "i1eooh7kmncw"
-PROXY_IP = "142.111.48.253"
-PROXY_PORT = "7030"
+# Optional proxy (for local testing or Webshare)
+PROXY_USERNAME = os.getenv("PROXY_USERNAME")
+PROXY_PASSWORD = os.getenv("PROXY_PASSWORD")
+PROXY_IP = os.getenv("PROXY_IP")
+PROXY_PORT = os.getenv("PROXY_PORT")
 
-proxies = {
-    "http": f"http://{PROXY_USERNAME}:{PROXY_PASSWORD}@{PROXY_IP}:{PROXY_PORT}",
-    "https": f"http://{PROXY_USERNAME}:{PROXY_PASSWORD}@{PROXY_IP}:{PROXY_PORT}"
-}
+if PROXY_IP and PROXY_PORT:
+    proxies = {
+        "http": f"http://{PROXY_USERNAME}:{PROXY_PASSWORD}@{PROXY_IP}:{PROXY_PORT}",
+        "https": f"http://{PROXY_USERNAME}:{PROXY_PASSWORD}@{PROXY_IP}:{PROXY_PORT}"
+    }
+else:
+    proxies = None
 # ------------------------------------------
 
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
@@ -45,16 +48,15 @@ except Exception as e:
     print(f"❌ Error fetching war data: {e}")
     exit(1)
 
+# 3️⃣ Build log entry
 date_str = datetime.utcnow().strftime("%Y-%m-%d")
 report_lines = []
 
-# Header
 report_lines.append(f"## 📅 {date_str} — Clan War Deck Usage (Current Members Only)")
 report_lines.append("")
 report_lines.append("| Player | Decks Used | Fame |")
 report_lines.append("|--------|------------|------|")
 
-# Log only participants who are still in the clan
 for p in sorted(war_data["clan"]["participants"], key=lambda x: x["name"].lower()):
     if p['tag'] in current_member_tags:
         name = p['name']
@@ -64,7 +66,7 @@ for p in sorted(war_data["clan"]["participants"], key=lambda x: x["name"].lower(
 
 report_lines.append("\n")
 
-# Append or write to file
+# 4️⃣ Write or append to the markdown log file
 if not os.path.exists(LOG_FILE):
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         f.write("\n".join(report_lines))
