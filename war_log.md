@@ -103,3 +103,54 @@
 | érdi ts ár | 0/4 | 0 |
 | ✨The Alpha✨ | 2/4 | 250 |
 
+## 📅 2025-10-26 — Clan War Deck Usage (Current Members Only)
+
+| Player | Decks Used | Fame |
+|--------|------------|------|
+| ##Cristi | 5/4 | 600 |
+| AlexanderSthar | 4/4 | 600 |
+| BazsZ | 0/4 | 0 |
+| best efem | 2/4 | 200 |
+| brawl pro53 | 3/4 | 375 |
+| brayam | 4/4 | 700 |
+| buzipitypang | 6/4 | 1500 |
+| domos | 3/4 | 300 |
+| DRXLEGEND | 12/4 | 1700 |
+| EggCarlette | 0/4 | 0 |
+| Enzomiguelfgl | 0/4 | 0 |
+| Eze | 12/4 | 1300 |
+| Flamewater23 | 5/4 | 800 |
+| Foxhun | 2/4 | 200 |
+| FREEZTZ$) | 0/4 | 0 |
+| Gery | 5/4 | 1000 |
+| gg | 6/4 | 800 |
+| Grey118 | 0/4 | 0 |
+| gus.hz7 | 0/4 | 0 |
+| hatos6 | 0/4 | 0 |
+| heem | 6/4 | 900 |
+| Kuglof | 1/4 | 75 |
+| Levikeke | 4/4 | 500 |
+| Lukas | 2/4 | 300 |
+| max | 12/4 | 1300 |
+| Mhatyi | 12/4 | 2050 |
+| NCGebyte20 | 8/4 | 800 |
+| Omer | 12/4 | 2000 |
+| Pjra18 | 12/4 | 1800 |
+| rolcsi | 1/4 | 200 |
+| Rune | 11/4 | 1350 |
+| Sekys | 6/4 | 1000 |
+| sigmašito | 9/4 | 1300 |
+| steez | 0/4 | 0 |
+| tejfol | 0/4 | 0 |
+| ULTRABOY | 2/4 | 400 |
+| Viktor01 | 0/4 | 0 |
+| VKG Loureiro | 12/4 | 2100 |
+| VLAD | 3/4 | 400 |
+| VLAD | 3/4 | 500 |
+| Wambly | 2/4 | 400 |
+| Wish | 3/4 | 600 |
+| wizf | 2/4 | 300 |
+| Xx Old Goat xX | 12/4 | 1700 |
+| érdi ts ár | 0/4 | 0 |
+| ✨The Alpha✨ | 6/4 | 700 |
+
