@@ -392,3 +392,52 @@
 | øćīẽřòëß | 0/4 | 0 |
 | ✨The Alpha✨ | 0/4 | 0 |
 
+## 📅 2025-11-01 — Clan War Deck Usage (Current Members Only)
+
+| Player | Decks Used | Fame |
+|--------|------------|------|
+| ##Cristi | 2/4 | 400 |
+| <c9>jalasballas | 4/4 | 800 |
+| AlexanderSthar | 2/4 | 200 |
+| BazsZ | 2/4 | 300 |
+| best efem | 0/4 | 0 |
+| brawl pro53 | 0/4 | 0 |
+| brayam | 2/4 | 400 |
+| buzipitypang | 2/4 | 500 |
+| domos | 1/4 | 100 |
+| DRXLEGEND | 4/4 | 700 |
+| EggCarlette | 8/4 | 1200 |
+| Eze | 8/4 | 900 |
+| Flamewater23 | 4/4 | 600 |
+| Foxhun | 6/4 | 800 |
+| FREEZTZ$) | 0/4 | 0 |
+| Gery | 3/4 | 450 |
+| gg | 4/4 | 500 |
+| heem | 0/4 | 0 |
+| Ikaussa | 8/4 | 1300 |
+| LEO | 8/4 | 900 |
+| Levikeke | 4/4 | 400 |
+| Lukas | 6/4 | 700 |
+| M1lk | 0/4 | 0 |
+| max | 8/4 | 800 |
+| Mhatyi | 8/4 | 1250 |
+| NCGebyte20 | 1/4 | 100 |
+| Omer | 6/4 | 1200 |
+| Pjra18 | 8/4 | 1100 |
+| rolcsi | 0/4 | 0 |
+| Rune | 2/4 | 200 |
+| Sekys | 0/4 | 0 |
+| sigmašito | 8/4 | 1200 |
+| szerlemgyros | 4/4 | 500 |
+| Tiktok: BsKito | 5/4 | 650 |
+| Viktor01 | 0/4 | 0 |
+| VKG Loureiro | 8/4 | 1450 |
+| VLAD | 2/4 | 200 |
+| VLAD | 2/4 | 300 |
+| Wambly | 0/4 | 0 |
+| Wish | 4/4 | 800 |
+| wizf | 6/4 | 700 |
+| Xx Old Goat xX | 8/4 | 1300 |
+| øćīẽřòëß | 4/4 | 800 |
+| ✨The Alpha✨ | 0/4 | 0 |
+
