@@ -672,3 +672,50 @@
 | Zokni | 0/4 | 0 |
 | øćīẽřòëß | 0/4 | 0 |
 
+## 📅 2025-11-07 — Clan War Deck Usage (Current Members Only)
+
+| Player | Decks Used | Fame |
+|--------|------------|------|
+| ##Cristi | 0/4 | 0 |
+| <c9>jalasballas | 4/4 | 400 |
+| best efem | 1/4 | 100 |
+| brawl pro53 | 0/4 | 0 |
+| brayam | 4/4 | 600 |
+| buzipitypang | 0/4 | 0 |
+| B̟̈́̆̐̄̚͜ỉᦋꪉꪮꪉꫀꪹ | 0/4 | 0 |
+| EggCarlette | 0/4 | 0 |
+| Eze | 4/4 | 400 |
+| Flamewater23 | 0/4 | 0 |
+| Foxhun | 4/4 | 550 |
+| Gery | 4/4 | 500 |
+| gg | 0/4 | 0 |
+| Ikaussa | 4/4 | 600 |
+| kinglag | 4/4 | 800 |
+| LEO | 4/4 | 400 |
+| Levikeke | 0/4 | 0 |
+| Lukas | 4/4 | 400 |
+| M1lk | 0/4 | 0 |
+| max | 0/4 | 0 |
+| Merse_gamer | 0/4 | 0 |
+| Mhatyi | 4/4 | 800 |
+| NCGebyte20 | 4/4 | 400 |
+| noobaba | 0/4 | 0 |
+| Omer | 4/4 | 500 |
+| Pjra18 | 4/4 | 600 |
+| Pool | 2/4 | 300 |
+| rolcsi | 4/4 | 400 |
+| Rune | 4/4 | 350 |
+| Sekys | 4/4 | 700 |
+| sigmašito | 4/4 | 600 |
+| szerlemgyros | 0/4 | 0 |
+| Tiktok: BsKito | 3/4 | 400 |
+| Viktor01 | 0/4 | 0 |
+| VKG Loureiro | 0/4 | 0 |
+| VLAD | 1/4 | 200 |
+| VLAD | 1/4 | 200 |
+| Wambly | 1/4 | 100 |
+| wizf | 1/4 | 100 |
+| Xx Old Goat xX | 4/4 | 700 |
+| Zokni | 0/4 | 0 |
+| øćīẽřòëß | 4/4 | 650 |
+
