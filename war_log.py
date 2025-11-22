@@ -58,12 +58,11 @@ current_member_tags = {m['tag'] for m in members_data.get('items', [])}
 war_url = f"https://api.clashroyale.com/v1/clans/%23{CLAN_TAG}/currentriverrace"
 war_data = fetch_json(war_url)
 
-# 3️⃣ Build log entry
+# 3️⃣ Build report lines
 date_str = datetime.utcnow().strftime("%Y-%m-%d")
 report_lines = [
-    f"## 📅 {date_str} — Clan War Deck Usage (Current Members Only)\n",
-    "| Player | Decks Used | Fame |",
-    "|--------|------------|------|"
+    f"| Player | Decks Used | Fame |",
+    f"|--------|------------|------|"
 ]
 
 for p in sorted(war_data.get("clan", {}).get("participants", []), key=lambda x: x["name"].lower()):
@@ -75,17 +74,48 @@ for p in sorted(war_data.get("clan", {}).get("participants", []), key=lambda x: 
 
 report_lines.append("\n")
 
-# 4️⃣ Write or append to the markdown log file
+# ----------------- WEEK + COLLAPSIBLE DAY LOGIC -----------------
+
+# Determine war day number
+if not os.path.exists(LOG_FILE):
+    day_number = 1
+else:
+    # Count collapsible "summary>" lines already present
+    with open(LOG_FILE, "r", encoding="utf-8") as f:
+        text = f.read()
+    day_number = text.count("<summary>") + 1
+
+# Determine week number
+week_number = (day_number - 1) // 7 + 1
+day_in_week = (day_number - 1) % 7 + 1  # 1–7 inside week
+
+# Day label rules
+if day_in_week in (5, 6, 7):
+    summary_title = f"Training Day — {date_str}"
+else:
+    summary_title = f"Day {day_number} — {date_str}"
+
+# Build collapsible markdown entry
+week_header = f"## Week {week_number}\n\n" if day_in_week == 1 else ""
+
+collapsible_entry = (
+    f"{week_header}"
+    f"<details>\n"
+    f"<summary>{summary_title}</summary>\n\n"
+    + "\n".join(report_lines) +
+    "\n</details>\n\n"
+)
+
+# Prepend to top of file
 if not os.path.exists(LOG_FILE):
     with open(LOG_FILE, "w", encoding="utf-8") as f:
-        f.write("\n".join(report_lines))
-    print(f"✅ Created {LOG_FILE} and added entry for {date_str}")
+        f.write(collapsible_entry)
+    print(f"✅ Created {LOG_FILE} with Day {day_number}")
 else:
     with open(LOG_FILE, "r", encoding="utf-8") as f:
-        existing = f.read()
-    if date_str not in existing:
-        with open(LOG_FILE, "a", encoding="utf-8") as f:
-            f.write("\n".join(report_lines))
-        print(f"✅ Added new entry for {date_str}")
-    else:
-        print(f"ℹ️ Entry for {date_str} already exists — no update made.")
+        old = f.read()
+
+    with open(LOG_FILE, "w", encoding="utf-8") as f:
+        f.write(collapsible_entry + old)
+
+    print(f"✅ Prepended Day {day_number} to top of {LOG_FILE}")
