@@ -43,11 +43,11 @@ def fetch_json(url):
         response = requests.get(url, headers=headers, proxies=proxies, timeout=10)
         response.raise_for_status()
         return response.json()
-    except requests.exceptions.HTTPError as e:
-        print(f"❌ HTTP error while fetching {url}: {e}")
     except requests.exceptions.RequestException as e:
-        print(f"❌ Request error while fetching {url}: {e}")
-    sys.exit(1)
+        print(f"❌ Error while fetching {url}: {e}")
+        sys.exit(1)
+
+# ----------------- FETCH CLAN & WAR INFO -----------------
 
 # 1️⃣ Get current clan members
 members_url = f"https://api.clashroyale.com/v1/clans/%23{CLAN_TAG}/members"
@@ -58,8 +58,10 @@ current_member_tags = {m['tag'] for m in members_data.get('items', [])}
 war_url = f"https://api.clashroyale.com/v1/clans/%23{CLAN_TAG}/currentriverrace"
 war_data = fetch_json(war_url)
 
-# 3️⃣ Build report lines
+# ----------------- BUILD TABLE -----------------
+
 date_str = datetime.utcnow().strftime("%Y-%m-%d")
+
 report_lines = [
     f"| Player | Decks Used | Fame |",
     f"|--------|------------|------|"
@@ -74,48 +76,61 @@ for p in sorted(war_data.get("clan", {}).get("participants", []), key=lambda x: 
 
 report_lines.append("\n")
 
-# ----------------- WEEK + COLLAPSIBLE DAY LOGIC -----------------
+# ----------------- CUSTOM DAY SYSTEM -----------------
 
-# Determine war day number
+# Count previous entries
 if not os.path.exists(LOG_FILE):
-    day_number = 1
+    log_count = 0
 else:
-    # Count collapsible "summary>" lines already present
     with open(LOG_FILE, "r", encoding="utf-8") as f:
         text = f.read()
-    day_number = text.count("<summary>") + 1
+    log_count = text.count("<summary>")
 
-# Determine week number
-week_number = (day_number - 1) // 7 + 1
-day_in_week = (day_number - 1) % 7 + 1  # 1–7 inside week
+# Tomorrow starts at Training Day 2
+starting_offset = 1
 
-# Day label rules
-if day_in_week in (5, 6, 7):
-    summary_title = f"Training Day — {date_str}"
-else:
-    summary_title = f"Day {day_number} — {date_str}"
+# 1 → T1, 2 → T2, 3 → T3, 4 → B1 ... 7 → B4
+cycle_day = ((log_count + starting_offset) % 7) + 1
 
-# Build collapsible markdown entry
-week_header = f"## Week {week_number}\n\n" if day_in_week == 1 else ""
+if cycle_day == 1:
+    day_title = f"Training Day 1 — {date_str}"
+elif cycle_day == 2:
+    day_title = f"Training Day 2 — {date_str}"
+elif cycle_day == 3:
+    day_title = f"Training Day 3 — {date_str}"
+elif cycle_day == 4:
+    day_title = f"Battle Day 1 — {date_str}"
+elif cycle_day == 5:
+    day_title = f"Battle Day 2 — {date_str}"
+elif cycle_day == 6:
+    day_title = f"Battle Day 3 — {date_str}"
+elif cycle_day == 7:
+    day_title = f"Battle Day 4 — {date_str}"
+
+# Week system — starts when cycle_day == 1
+week_number = ((log_count + starting_offset) // 7) + 1
+
+week_header = f"## Week {week_number}\n\n" if cycle_day == 1 else ""
+
+# ----------------- COLLAPSIBLE ENTRY -----------------
 
 collapsible_entry = (
     f"{week_header}"
     f"<details>\n"
-    f"<summary>{summary_title}</summary>\n\n"
+    f"<summary>{day_title}</summary>\n\n"
     + "\n".join(report_lines) +
     "\n</details>\n\n"
 )
 
-# Prepend to top of file
-if not os.path.exists(LOG_FILE):
+# ----------------- PREPEND TO war_log.md -----------------
+
+if log_count == 0:
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         f.write(collapsible_entry)
-    print(f"✅ Created {LOG_FILE} with Day {day_number}")
+    print("✅ Created war_log.md")
 else:
     with open(LOG_FILE, "r", encoding="utf-8") as f:
         old = f.read()
-
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         f.write(collapsible_entry + old)
-
-    print(f"✅ Prepended Day {day_number} to top of {LOG_FILE}")
+    print(f"✅ Added new entry ({day_title})")
