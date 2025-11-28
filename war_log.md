@@ -1,4 +1,61 @@
 <details>
+<summary>Battle Day 1 — 2025-11-28</summary>
+
+| Player | Decks Used | Fame |
+|--------|------------|------|
+| Adam | 0/4 | 0 |
+| argentinakid | 0/4 | 0 |
+| Barni 484 HUN | 0/4 | 0 |
+| best efem | 0/4 | 0 |
+| brayam | 0/4 | 0 |
+| buzipitypang | 0/4 | 0 |
+| cesarito14 | 0/4 | 0 |
+| Eze | 4/4 | 600 |
+| Flamewater23 | 3/4 | 400 |
+| Gery | 0/4 | 0 |
+| gus.hz7 | 0/4 | 0 |
+| Ikaussa | 4/4 | 700 |
+| Kanye West | 2/4 | 300 |
+| kasper | 0/4 | 0 |
+| kinglag | 1/4 | 200 |
+| LEO | 3/4 | 600 |
+| Levikeke | 4/4 | 400 |
+| Lol Xd | 4/4 | 500 |
+| Lrig1337 | 1/4 | 200 |
+| LV | 1/4 | 100 |
+| mateka421 | 2/4 | 200 |
+| Merse_gamer | 0/4 | 0 |
+| Mhatyi | 4/4 | 800 |
+| NCGebyte20 | 1/4 | 200 |
+| Omer | 0/4 | 0 |
+| Pjra18 | 4/4 | 500 |
+| Prince | 0/4 | 0 |
+| Quini 09 | 0/4 | 0 |
+| RestlessHC | 4/4 | 600 |
+| rolcsi | 4/4 | 700 |
+| Rune | 2/4 | 500 |
+| Sekys | 0/4 | 0 |
+| sigmašito | 3/4 | 400 |
+| skullcracker64 | 0/4 | 0 |
+| Somonkey | 4/4 | 800 |
+| thekryps | 0/4 | 0 |
+| Tiktok: BsKito | 0/4 | 0 |
+| ukw❦ | 4/4 | 800 |
+| ULTRABOY | 0/4 | 0 |
+| Viktor01 | 0/4 | 0 |
+| VKG Loureiro | 4/4 | 700 |
+| VLAD | 1/4 | 100 |
+| VLAD | 1/4 | 200 |
+| Wambly | 0/4 | 0 |
+| wizf | 0/4 | 0 |
+| Xx Old Goat xX | 0/4 | 0 |
+| Zokni | 3/4 | 450 |
+| øćīẽřòëß | 4/4 | 650 |
+
+
+</details>
+
+<details>
 <summary>Training Day 3 — 2025-11-27</summary>
 
 | Player | Decks Used | Fame |
