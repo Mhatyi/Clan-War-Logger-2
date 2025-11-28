@@ -67,7 +67,12 @@ report_lines = [
     f"|--------|------------|------|"
 ]
 
-for p in sorted(war_data.get("clan", {}).get("participants", []), key=lambda x: x["name"].lower()):
+# SORT: most decks used → least
+for p in sorted(
+    war_data.get("clan", {}).get("participants", []),
+    key=lambda x: x.get("decksUsed", 0),
+    reverse=True
+):
     if p['tag'] in current_member_tags:
         name = p['name']
         decks_used = p.get("decksUsed", 0)
@@ -89,9 +94,10 @@ else:
 # Tomorrow starts at Training Day 2
 starting_offset = 1
 
-# 1 → T1, 2 → T2, 3 → T3, 4 → B1 ... 7 → B4
+# Determine cycle day (1–7)
 cycle_day = ((log_count + starting_offset) % 7) + 1
 
+# Label days
 if cycle_day == 1:
     day_title = f"Training Day 1 — {date_str}"
 elif cycle_day == 2:
@@ -107,9 +113,10 @@ elif cycle_day == 6:
 elif cycle_day == 7:
     day_title = f"Battle Day 4 — {date_str}"
 
-# Week system — starts when cycle_day == 1
+# Week calculation
 week_number = ((log_count + starting_offset) // 7) + 1
 
+# Week header only when week STARTS
 week_header = f"## Week {week_number}\n\n" if cycle_day == 1 else ""
 
 # ----------------- COLLAPSIBLE ENTRY -----------------
