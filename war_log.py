@@ -114,7 +114,8 @@ if previous_text:
 if starting_new_season:
     log_count_for_season = 0
 
-starting_offset = 1  # start from training day 2 tomorrow
+# Adjust starting_offset to start at Battle Day 4 immediately
+starting_offset = 3  # cycle_day = ((0 + 3) % 7) + 1 = 4
 cycle_day = ((log_count_for_season + starting_offset) % 7) + 1  # 1..7
 week_number = ((log_count_for_season + starting_offset) // 7) + 1
 
@@ -128,18 +129,6 @@ for p in war_data.get("clan", {}).get("participants", []):
     api_decks = int(p.get("decksUsed", 0) or 0)
     fame = int(p.get("fame", 0) or 0)
     participants_raw.append({"name": name, "api_decks": api_decks, "fame": fame})
-
-# build training table (shared for days 1-3)
-def build_training_table_text(participants):
-    sorted_p = sorted(participants, key=lambda x: (x["api_decks"], x["fame"], x["name"].lower()), reverse=True)
-    lines = [
-        "| Player | Decks Used | Fame |",
-        "|--------|------------|------|"
-    ]
-    for pp in sorted_p:
-        lines.append(f"| {pp['name']} | {pp['api_decks']}/4 | {pp['fame']} |")
-    lines.append("\n")
-    return "<details>\n<summary>🎯 Training Days (1–3) — " + date_str + "</summary>\n\n" + "\n".join(lines) + "\n</details>\n\n"
 
 # build colosseum battle table (days 4-7)
 def build_colosseum_battle_table_text(participants):
@@ -184,30 +173,14 @@ if previous_text and not starting_new_season:
 if not week_header_present:
     to_prepend += week_header_text
 
-# build training table
-training_block = build_training_table_text(participants_raw)
+# build per-day block for first battle day
 new_text = previous_text
-new_text, training_replaced = replace_details_block(new_text, "🎯 Training Days (1–3) — " + date_str, training_block)
-if not training_replaced:
-    new_text, training_replaced = replace_details_block(new_text, "🎯 Training Days (1–3)", training_block)
-if not training_replaced:
-    to_prepend += training_block
-
-# battle tables
-if is_colosseum:
-    colosseum_block = build_colosseum_battle_table_text(participants_raw)
-    new_text, col_replaced = replace_details_block(new_text, "🏟️ Colosseum Battle Table (Days 4–7) — " + date_str, colosseum_block)
-    if not col_replaced:
-        new_text, col_replaced = replace_details_block(new_text, "🏟️ Colosseum Battle Table (Days 4–7)", colosseum_block)
-    if not col_replaced:
-        to_prepend += colosseum_block
-else:
-    if cycle_day >= 4:
-        day_number = cycle_day
-        daily_block, daily_title = build_daily_battle_table_text(participants_raw, day_number)
-        new_text, daily_replaced = replace_details_block(new_text, daily_title, daily_block)
-        if not daily_replaced:
-            to_prepend += daily_block
+if cycle_day >= 4:
+    day_number = cycle_day
+    daily_block, daily_title = build_daily_battle_table_text(participants_raw, day_number)
+    new_text, daily_replaced = replace_details_block(new_text, daily_title, daily_block)
+    if not daily_replaced:
+        to_prepend += daily_block
 
 # prepend new content and write
 final_text = to_prepend + new_text
