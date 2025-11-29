@@ -1,14 +1,14 @@
 import os
 import sys
+import re
 import requests
 from datetime import datetime
 
-print("Current working directory:", os.getcwd())
-
-# ----------------- CONFIG -----------------
+# CONFIG
 API_TOKEN = os.getenv("API_TOKEN")
 CLAN_TAG = os.getenv("CLAN_TAG")
-LOG_FILE = "war_log.md"  # File to store daily logs
+LOG_FILE = "war_log.md"
+STARTING_SEASON = 126  # initial season if none exists
 
 # Optional proxy
 PROXY_USERNAME = os.getenv("PROXY_USERNAME")
@@ -16,16 +16,15 @@ PROXY_PASSWORD = os.getenv("PROXY_PASSWORD")
 PROXY_IP = os.getenv("PROXY_IP")
 PROXY_PORT = os.getenv("PROXY_PORT")
 
-# ----------------- VALIDATION -----------------
+# Basic validations
 if not API_TOKEN:
     print("❌ API_TOKEN is missing! Please check your GitHub secret.")
     sys.exit(1)
-
 if not CLAN_TAG:
     print("❌ CLAN_TAG is missing! Please check your GitHub secret.")
     sys.exit(1)
 
-# Setup proxies if provided
+# Prepare proxies
 if PROXY_IP and PROXY_PORT:
     proxies = {
         "http": f"http://{PROXY_USERNAME}:{PROXY_PASSWORD}@{PROXY_IP}:{PROXY_PORT}",
@@ -34,110 +33,190 @@ if PROXY_IP and PROXY_PORT:
 else:
     proxies = None
 
-# ----------------- REQUEST HEADERS -----------------
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
 def fetch_json(url):
-    """Fetch JSON data from Clash Royale API with error handling."""
     try:
-        response = requests.get(url, headers=headers, proxies=proxies, timeout=10)
-        response.raise_for_status()
-        return response.json()
+        r = requests.get(url, headers=headers, proxies=proxies, timeout=10)
+        r.raise_for_status()
+        return r.json()
     except requests.exceptions.RequestException as e:
-        print(f"❌ Error while fetching {url}: {e}")
+        print(f"❌ Error fetching {url}: {e}")
         sys.exit(1)
 
-# ----------------- FETCH CLAN & WAR INFO -----------------
+# helper to find and replace a <details>...</details> block by its summary title
+def replace_details_block(text, summary_title, new_block):
+    pattern = r"<details>.*?<summary>\s*" + re.escape(summary_title) + r"\s*</summary>.*?</details>\s*"
+    new_text, n = re.subn(pattern, new_block, text, flags=re.DOTALL | re.IGNORECASE)
+    return new_text, n > 0
 
-# 1️⃣ Get current clan members
+# helper: find first summary title in the file
+def first_summary_title(text):
+    m = re.search(r"<summary>\s*(.*?)\s*</summary>", text, flags=re.DOTALL | re.IGNORECASE)
+    return m.group(1).strip() if m else None
+
+# helper: extract topmost season number (if exists)
+def top_season_number(text):
+    m = re.search(r"^#\s*Season\s+(\d+)", text, flags=re.MULTILINE | re.IGNORECASE)
+    return int(m.group(1)) if m else None
+
+# helper: count summaries after a given index
+def count_summaries_after(text, idx):
+    sub = text[idx:]
+    return len(re.findall(r"<summary>", sub, flags=re.IGNORECASE))
+
+# helper: find index of topmost season header if present
+def index_of_top_season(text):
+    m = re.search(r"^#\s*Season\s+\d+\s*$", text, flags=re.MULTILINE | re.IGNORECASE)
+    return m.start() if m else None
+
+# fetch data
 members_url = f"https://api.clashroyale.com/v1/clans/%23{CLAN_TAG}/members"
-members_data = fetch_json(members_url)
-current_member_tags = {m['tag'] for m in members_data.get('items', [])}
-
-# 2️⃣ Get current war participants
 war_url = f"https://api.clashroyale.com/v1/clans/%23{CLAN_TAG}/currentriverrace"
+
+members_data = fetch_json(members_url)
 war_data = fetch_json(war_url)
 
-# ----------------- BUILD TABLE -----------------
+current_member_tags = {m['tag'] for m in members_data.get('items', [])}
 
 date_str = datetime.utcnow().strftime("%Y-%m-%d")
+period_type = war_data.get("periodType", "").lower()
+is_colosseum = (period_type == "colosseum")
 
-report_lines = [
-    f"| Player | Decks Used | Fame |",
-    f"|--------|------------|------|"
-]
+# read previous file if present
+previous_text = ""
+if os.path.exists(LOG_FILE):
+    with open(LOG_FILE, "r", encoding="utf-8") as fh:
+        previous_text = fh.read()
 
-# SORT: most decks used → least
-for p in sorted(
-    war_data.get("clan", {}).get("participants", []),
-    key=lambda x: x.get("decksUsed", 0),
-    reverse=True
-):
-    if p['tag'] in current_member_tags:
-        name = p['name']
-        decks_used = p.get("decksUsed", 0)
-        fame = p.get("fame", 0)
-        report_lines.append(f"| {name} | {decks_used}/4 | {fame} |")
+# determine current season number
+existing_season = top_season_number(previous_text)
+season_number = existing_season if existing_season is not None else STARTING_SEASON
 
-report_lines.append("\n")
+# detect transition: previous was colosseum, now not -> new season
+prev_summary = first_summary_title(previous_text) if previous_text else None
+prev_was_colosseum = prev_summary and ("colosseum" in prev_summary.lower() or "🏟" in prev_summary)
+starting_new_season = prev_was_colosseum and not is_colosseum
+if starting_new_season:
+    season_number += 1
 
-# ----------------- CUSTOM DAY SYSTEM -----------------
+# compute cycle day and week number
+log_count_for_season = 0
+if previous_text:
+    season_idx = index_of_top_season(previous_text)
+    if season_idx is None:
+        log_count_for_season = previous_text.count("<summary>")
+    else:
+        m = re.search(r"^#\s*Season\s+\d+\s*$", previous_text, flags=re.MULTILINE | re.IGNORECASE)
+        end_idx = m.end() if m else 0
+        log_count_for_season = count_summaries_after(previous_text, end_idx)
 
-# Count previous entries
-if not os.path.exists(LOG_FILE):
-    log_count = 0
+if starting_new_season:
+    log_count_for_season = 0
+
+starting_offset = 1  # start from training day 2 tomorrow
+cycle_day = ((log_count_for_season + starting_offset) % 7) + 1  # 1..7
+week_number = ((log_count_for_season + starting_offset) // 7) + 1
+
+# build participant info
+participants_raw = []
+for p in war_data.get("clan", {}).get("participants", []):
+    tag = p.get("tag")
+    if tag not in current_member_tags:
+        continue
+    name = p.get("name", "Unknown")
+    api_decks = int(p.get("decksUsed", 0) or 0)
+    fame = int(p.get("fame", 0) or 0)
+    participants_raw.append({"name": name, "api_decks": api_decks, "fame": fame})
+
+# build training table (shared for days 1-3)
+def build_training_table_text(participants):
+    sorted_p = sorted(participants, key=lambda x: (x["api_decks"], x["fame"], x["name"].lower()), reverse=True)
+    lines = [
+        "| Player | Decks Used | Fame |",
+        "|--------|------------|------|"
+    ]
+    for pp in sorted_p:
+        lines.append(f"| {pp['name']} | {pp['api_decks']}/4 | {pp['fame']} |")
+    lines.append("\n")
+    return "<details>\n<summary>🎯 Training Days (1–3) — " + date_str + "</summary>\n\n" + "\n".join(lines) + "\n</details>\n\n"
+
+# build colosseum battle table (days 4-7)
+def build_colosseum_battle_table_text(participants):
+    sorted_p = sorted(participants, key=lambda x: (x["api_decks"], x["fame"], x["name"].lower()), reverse=True)
+    lines = [
+        "| Player | Total Decks Used | Total Fame |",
+        "|--------|------------------|------------|"
+    ]
+    for pp in sorted_p:
+        lines.append(f"| {pp['name']} | {pp['api_decks']} | {pp['fame']} |")
+    lines.append("\n")
+    return "<details>\n<summary>🏟️ Colosseum Battle Table (Days 4–7) — " + date_str + "</summary>\n\n" + "\n".join(lines) + "\n</details>\n\n"
+
+# build per-day battle table (normal week, days 4-7)
+def build_daily_battle_table_text(participants, day_number):
+    sorted_p = sorted(participants, key=lambda x: (x["api_decks"], x["fame"], x["name"].lower()), reverse=True)
+    lines = [
+        "| Player | Decks Used | Fame |",
+        "|--------|------------|------|"
+    ]
+    for pp in sorted_p:
+        lines.append(f"| {pp['name']} | {pp['api_decks']}/4 | {pp['fame']} |")
+    lines.append("\n")
+    title = f"⚔️ Battle Day {day_number} — {date_str}"
+    return "<details>\n<summary>" + title + "</summary>\n\n" + "\n".join(lines) + "\n</details>\n\n", title
+
+# start building new content
+to_prepend = ""
+
+# season header
+if starting_new_season or existing_season is None:
+    to_prepend += f"# Season {season_number}\n\n"
+
+# week header
+week_header_text = f"## Week {week_number}\n\n"
+week_header_present = False
+if previous_text and not starting_new_season:
+    season_idx = index_of_top_season(previous_text)
+    search_area = previous_text[season_idx:] if season_idx is not None else previous_text
+    if re.search(rf"^##\s*Week\s+{week_number}\s*$", search_area, flags=re.MULTILINE | re.IGNORECASE):
+        week_header_present = True
+if not week_header_present:
+    to_prepend += week_header_text
+
+# build training table
+training_block = build_training_table_text(participants_raw)
+new_text = previous_text
+new_text, training_replaced = replace_details_block(new_text, "🎯 Training Days (1–3) — " + date_str, training_block)
+if not training_replaced:
+    new_text, training_replaced = replace_details_block(new_text, "🎯 Training Days (1–3)", training_block)
+if not training_replaced:
+    to_prepend += training_block
+
+# battle tables
+if is_colosseum:
+    colosseum_block = build_colosseum_battle_table_text(participants_raw)
+    new_text, col_replaced = replace_details_block(new_text, "🏟️ Colosseum Battle Table (Days 4–7) — " + date_str, colosseum_block)
+    if not col_replaced:
+        new_text, col_replaced = replace_details_block(new_text, "🏟️ Colosseum Battle Table (Days 4–7)", colosseum_block)
+    if not col_replaced:
+        to_prepend += colosseum_block
 else:
-    with open(LOG_FILE, "r", encoding="utf-8") as f:
-        text = f.read()
-    log_count = text.count("<summary>")
+    if cycle_day >= 4:
+        day_number = cycle_day
+        daily_block, daily_title = build_daily_battle_table_text(participants_raw, day_number)
+        new_text, daily_replaced = replace_details_block(new_text, daily_title, daily_block)
+        if not daily_replaced:
+            to_prepend += daily_block
 
-# Tomorrow starts at Training Day 2
-starting_offset = 1
+# prepend new content and write
+final_text = to_prepend + new_text
+final_text = re.sub(r"(#\s*Season\s+\d+\s*\n\s*){2,}", r"\1", final_text, flags=re.IGNORECASE)
 
-# Determine cycle day (1–7)
-cycle_day = ((log_count + starting_offset) % 7) + 1
+with open(LOG_FILE, "w", encoding="utf-8") as fh:
+    fh.write(final_text)
 
-# Label days
-if cycle_day == 1:
-    day_title = f"Training Day 1 — {date_str}"
-elif cycle_day == 2:
-    day_title = f"Training Day 2 — {date_str}"
-elif cycle_day == 3:
-    day_title = f"Training Day 3 — {date_str}"
-elif cycle_day == 4:
-    day_title = f"Battle Day 1 — {date_str}"
-elif cycle_day == 5:
-    day_title = f"Battle Day 2 — {date_str}"
-elif cycle_day == 6:
-    day_title = f"Battle Day 3 — {date_str}"
-elif cycle_day == 7:
-    day_title = f"Battle Day 4 — {date_str}"
-
-# Week calculation
-week_number = ((log_count + starting_offset) // 7) + 1
-
-# Week header only when week STARTS
-week_header = f"## Week {week_number}\n\n" if cycle_day == 1 else ""
-
-# ----------------- COLLAPSIBLE ENTRY -----------------
-
-collapsible_entry = (
-    f"{week_header}"
-    f"<details>\n"
-    f"<summary>{day_title}</summary>\n\n"
-    + "\n".join(report_lines) +
-    "\n</details>\n\n"
-)
-
-# ----------------- PREPEND TO war_log.md -----------------
-
-if log_count == 0:
-    with open(LOG_FILE, "w", encoding="utf-8") as f:
-        f.write(collapsible_entry)
-    print("✅ Created war_log.md")
+if starting_new_season:
+    print(f"✅ Started new Season {season_number} and updated logs (cycle_day={cycle_day}, week={week_number})")
 else:
-    with open(LOG_FILE, "r", encoding="utf-8") as f:
-        old = f.read()
-    with open(LOG_FILE, "w", encoding="utf-8") as f:
-        f.write(collapsible_entry + old)
-    print(f"✅ Added new entry ({day_title})")
+    print(f"✅ Updated war_log.md (cycle_day={cycle_day}, week={week_number}, periodType={period_type})")
