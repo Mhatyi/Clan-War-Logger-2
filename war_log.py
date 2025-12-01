@@ -9,7 +9,7 @@ from datetime import datetime
 API_TOKEN = os.getenv("API_TOKEN")
 CLAN_TAG = os.getenv("CLAN_TAG")
 LOG_FILE = "war_log.md"
-STARTING_SEASON = 126
+STARTING_SEASON = 127
 
 # Optional proxy
 PROXY_USERNAME = os.getenv("PROXY_USERNAME")
