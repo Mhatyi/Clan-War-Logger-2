@@ -50,15 +50,21 @@ proxies = {
 def fetch_json(url):
     try:
         response = requests.get(url, headers=headers, timeout=10, proxies=proxies)
-        response.raise_for_status()
-        return response.json()
-    except requests.HTTPError as e:
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Request failed to {url}")
+        print(f"   {type(e).__name__}: {e}")
+        sys.exit(1)
+
+    # Detailed error reporting
+    if response.status_code != 200:
         print(f"❌ HTTP Status: {response.status_code} for {url}")
-        print(f"❌ Response body: {response.json()}")
+        try:
+            print(f"❌ Response body: {response.json()}")
+        except:
+            print(f"❌ Raw text: {response.text}")
         sys.exit(1)
-    except Exception as e:
-        print(f"❌ Error fetching {url}")
-        sys.exit(1)
+
+    return response.json()
 
 
 # ----------------- DATA FETCH -----------------
@@ -134,7 +140,7 @@ if f"Season {season}" not in log:
     output.append(f"# Season {season}\n")
 
 if col:
-    header = f"## 🏛️ Colosseum Week"
+    header = f"## 🏟️ Colosseum Week"
 else:
     header = f"## Week {week}"
 
@@ -165,7 +171,7 @@ if not col and day in TRAINING_DAYS:
     entry = ""
 
 else:
-    emoji = "🏛️" if col else "⚔️"
+    emoji = "🏟️" if col else "⚔️"
     output.append(f"### {emoji} Day {day} — {date_str}")
     output.append("| Player | Decks Used | Fame |")
     output.append("|-------|------------|------|")
