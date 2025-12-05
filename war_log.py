@@ -26,31 +26,39 @@ if not CLAN_TAG:
 # ----------------- REQUEST HEADERS -----------------
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
+# ----------------- PROXY SETUP -----------------
+PROXY_USERNAME = os.getenv("PROXY_USERNAME", "")
+PROXY_PASSWORD = os.getenv("PROXY_PASSWORD", "")
+PROXY_IP = os.getenv("PROXY_IP", "")
+PROXY_PORT = os.getenv("PROXY_PORT", "")
 
-# =======================================================
-# DIAGNOSTIC FETCH FUNCTION (NEW!)
-# =======================================================
+proxy_string = ""
+
+if PROXY_IP and PROXY_PORT:
+    if PROXY_USERNAME and PROXY_PASSWORD:
+        proxy_string = f"http://{PROXY_USERNAME}:{PROXY_PASSWORD}@{PROXY_IP}:{PROXY_PORT}"
+    else:
+        proxy_string = f"http://{PROXY_IP}:{PROXY_PORT}"
+
+proxies = {
+    "http": proxy_string,
+    "https": proxy_string
+} if proxy_string else None
+
+
+# ----------------- REQUEST FUNCTION (with proxy) -----------------
 def fetch_json(url):
-    """Fetch JSON with detailed error diagnostics."""
     try:
-        response = requests.get(url, headers=headers, timeout=10)
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Request failed to {url}")
-        print(f"   {type(e).__name__}: {e}")
-        sys.exit(1)
-
-    # If not 200 OK, print detailed server info
-    if response.status_code != 200:
+        response = requests.get(url, headers=headers, timeout=10, proxies=proxies)
+        response.raise_for_status()
+        return response.json()
+    except requests.HTTPError as e:
         print(f"❌ HTTP Status: {response.status_code} for {url}")
-        try:
-            data = response.json()
-            print(f"❌ Response body: {data}")
-        except:
-            print(f"❌ Raw text: {response.text}")
+        print(f"❌ Response body: {response.json()}")
         sys.exit(1)
-
-    return response.json()
-# =======================================================
+    except Exception as e:
+        print(f"❌ Error fetching {url}")
+        sys.exit(1)
 
 
 # ----------------- DATA FETCH -----------------
@@ -62,14 +70,15 @@ war_data = fetch_json(war_url)
 
 current_member_tags = {m['tag'] for m in members_data.get('items', [])}
 
+
 # ----------------- SORTING FUNCTION -----------------
 def sort_players(participants):
     return sorted(
         participants,
         key=lambda p: (
-            -p.get("decksUsed", 0),     # highest decks first
-            -p.get("fame", 0),          # highest fame next
-            p.get("name", "").lower()   # A→Z (final tie-break)
+            -p.get("decksUsed", 0),
+            -p.get("fame", 0),
+            p.get("name", "").lower()
         )
     )
 
@@ -87,7 +96,6 @@ def get_day_index(log, season, week):
             except:
                 pass
 
-    # FIRST RUN SPECIAL CASE
     if not existing:
         return 4 if FIRST_RUN_START_AT_BATTLE else 1
 
@@ -104,24 +112,24 @@ def is_colosseum_week():
 
 
 # ----------------- BUILD LOG ENTRY -----------------
-
 date_str = datetime.utcnow().strftime("%Y-%m-%d")
 
-# Get existing log
 if os.path.exists(LOG_FILE):
     with open(LOG_FILE, "r", encoding="utf-8") as f:
         log = f.read()
 else:
     log = ""
 
-season = 127  # start from season 127
-week = 1      # start from week 1
+season = 127
+week = 1
+
 day = get_day_index(log, season, week)
 col = is_colosseum_week()
 
-# ----------------- HEADER GENERATION -----------------
 output = []
 
+
+# ----------------- HEADER GENERATION -----------------
 if f"Season {season}" not in log:
     output.append(f"# Season {season}\n")
 
@@ -142,9 +150,9 @@ participants = [
 
 sorted_players = sort_players(participants)
 
+
 # TRAINING DAYS (single table for days 1–3)
 if not col and day in TRAINING_DAYS:
-    # create training table once
     if "### 🎯 Training Days 1–3" not in log:
         output.append("### 🎯 Training Days 1–3\n")
         output.append("<details>\n<summary>Open Training Table</summary>\n")
@@ -154,18 +162,16 @@ if not col and day in TRAINING_DAYS:
             output.append(f"| {p['name']} | {p.get('decksUsed', 0)}/4 | {p.get('fame', 0)} |")
         output.append("</details>\n")
 
-    # do NOT write new training tables
     entry = ""
 
 else:
-    # BATTLE DAYS
     emoji = "🏛️" if col else "⚔️"
     output.append(f"### {emoji} Day {day} — {date_str}")
     output.append("| Player | Decks Used | Fame |")
     output.append("|-------|------------|------|")
     for p in sorted_players:
         output.append(f"| {p['name']} | {p.get('decksUsed', 0)}/4 | {p.get('fame', 0)} |")
-    output.append("")  # newline
+    output.append("")
 
 
 # ----------------- WRITE TO FILE -----------------
