@@ -27,14 +27,30 @@ if not CLAN_TAG:
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
 
+# =======================================================
+# DIAGNOSTIC FETCH FUNCTION (NEW!)
+# =======================================================
 def fetch_json(url):
+    """Fetch JSON with detailed error diagnostics."""
     try:
         response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()
-        return response.json()
-    except:
-        print(f"❌ Error fetching {url}")
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Request failed to {url}")
+        print(f"   {type(e).__name__}: {e}")
         sys.exit(1)
+
+    # If not 200 OK, print detailed server info
+    if response.status_code != 200:
+        print(f"❌ HTTP Status: {response.status_code} for {url}")
+        try:
+            data = response.json()
+            print(f"❌ Response body: {data}")
+        except:
+            print(f"❌ Raw text: {response.text}")
+        sys.exit(1)
+
+    return response.json()
+# =======================================================
 
 
 # ----------------- DATA FETCH -----------------
@@ -53,7 +69,7 @@ def sort_players(participants):
         key=lambda p: (
             -p.get("decksUsed", 0),     # highest decks first
             -p.get("fame", 0),          # highest fame next
-            p.get("name", "").lower()   # A→Z
+            p.get("name", "").lower()   # A→Z (final tie-break)
         )
     )
 
@@ -82,7 +98,6 @@ def get_day_index(log, season, week):
 def is_colosseum_week():
     try:
         period = war_data.get("periodIndex", 0)
-        # generally periodIndex 3 is colosseum
         return period >= 3
     except:
         return False
@@ -99,9 +114,8 @@ if os.path.exists(LOG_FILE):
 else:
     log = ""
 
-season = 127  # you said start from 127
-week = 1      # always starts week 1 on a fresh log
-
+season = 127  # start from season 127
+week = 1      # start from week 1
 day = get_day_index(log, season, week)
 col = is_colosseum_week()
 
@@ -130,7 +144,7 @@ sorted_players = sort_players(participants)
 
 # TRAINING DAYS (single table for days 1–3)
 if not col and day in TRAINING_DAYS:
-    # if table doesn't exist, create it
+    # create training table once
     if "### 🎯 Training Days 1–3" not in log:
         output.append("### 🎯 Training Days 1–3\n")
         output.append("<details>\n<summary>Open Training Table</summary>\n")
@@ -140,7 +154,7 @@ if not col and day in TRAINING_DAYS:
             output.append(f"| {p['name']} | {p.get('decksUsed', 0)}/4 | {p.get('fame', 0)} |")
         output.append("</details>\n")
 
-    # DO NOT CREATE NEW TRAINING TABLES FOR DAY 2 OR 3
+    # do NOT write new training tables
     entry = ""
 
 else:
