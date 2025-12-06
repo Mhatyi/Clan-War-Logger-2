@@ -78,7 +78,7 @@ def is_colosseum_week(season, week):
 def parse_current_state(log):
     """Parse the current season, week, and day from the log."""
     if not log.strip():
-        return 127, 1, 6, False  # FIRST RUN: Start at Day 6 (Battle Day 3)
+        return 127, 1, 5, False  # FIRST RUN: Start at Day 5 → increments to 6 (Battle Day 3)
     
     lines = log.splitlines()
     
