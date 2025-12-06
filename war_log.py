@@ -185,8 +185,8 @@ current_week_content = {}
 # Training Days (SKIP for first week only)
 if day in TRAINING_DAYS and not first_week:
     training_content = []
-    training_content.append("### 🎯 Training Days 1–3\n")
-    training_content.append("<details>\n<summary>Open Training Table</summary>\n\n")
+    training_content.append("<details>\n")
+    training_content.append("<summary>### 🎯 Training Days 1–3</summary>\n\n")
     training_content.append("| Player | Decks Used Today | Fame |\n")
     training_content.append("|-------|------------------|------|\n")
     for p in sorted_players:
@@ -202,8 +202,8 @@ if day in [4, 5, 6, 7]:
         # COLOSSEUM: Cumulative max decks (4, 8, 12, 16)
         max_decks = battle_day * 4
         battle_content = []
-        battle_content.append(f"### 🏟️ Battle Days 1–4\n")
-        battle_content.append(f"<details>\n<summary>Battle Days — {date_str}</summary>\n\n")
+        battle_content.append("<details>\n")
+        battle_content.append(f"<summary>### 🏟️ Battle Days 1–4 — {date_str}</summary>\n\n")
         battle_content.append("| Player | Decks Used Today | Fame |\n")
         battle_content.append("|-------|------------------|------|\n")
         for p in sorted_players:
@@ -215,8 +215,8 @@ if day in [4, 5, 6, 7]:
         # NORMAL: Always 4 per day
         max_decks = 4
         battle_content = []
-        battle_content.append(f"### ⚔️ Battle Day {battle_day}\n")
-        battle_content.append(f"<details>\n<summary>Open Battle Day {battle_day} — {date_str}</summary>\n\n")
+        battle_content.append("<details>\n")
+        battle_content.append(f"<summary>### ⚔️ Battle Day {battle_day} — {date_str}</summary>\n\n")
         battle_content.append("| Player | Decks Used Today | Fame |\n")
         battle_content.append("|-------|------------------|------|\n")
         for p in sorted_players:
@@ -302,33 +302,50 @@ if 'training' in current_week_content:
 if current_week_key in log_structure[season]:
     existing_lines = log_structure[season][current_week_key]
     
-    # Extract existing battle days
+    # Extract existing battle days and training
     existing_battles = []
     existing_training = []
     i = 0
+    
     while i < len(existing_lines):
-        if existing_lines[i].startswith("### ⚔️ Battle Day "):
-            battle_lines = [existing_lines[i]]
+        line = existing_lines[i]
+        
+        if line.startswith("<details>"):
+            # Capture entire details block
+            detail_block = [line]
             i += 1
-            while i < len(existing_lines) and not existing_lines[i].startswith("###"):
-                battle_lines.append(existing_lines[i])
+            
+            # Check what type of block this is
+            is_battle = False
+            is_training = False
+            battle_day_num = None
+            
+            while i < len(existing_lines):
+                detail_block.append(existing_lines[i])
+                
+                if "Battle Day " in existing_lines[i] and "⚔️" in existing_lines[i]:
+                    is_battle = True
+                    try:
+                        battle_day_num = int(existing_lines[i].split("Battle Day ")[1].split()[0])
+                    except:
+                        pass
+                elif "Training Days" in existing_lines[i]:
+                    is_training = True
+                
+                if existing_lines[i].strip() == "</details>":
+                    i += 1
+                    break
                 i += 1
             
-            try:
-                battle_day_num = int(existing_lines[i-len(battle_lines)].split("Battle Day ")[1].split()[0])
-                if battle_day_num != (day - 3):
-                    existing_battles.append((battle_day_num, battle_lines))
-            except:
-                pass
-        elif existing_lines[i].startswith("### 🎯 Training Days"):
-            training_lines = []
-            while i < len(existing_lines) and not existing_lines[i].startswith("## "):
-                training_lines.append(existing_lines[i])
-                i += 1
-            existing_training = training_lines
+            # Store the block
+            if is_battle and battle_day_num and battle_day_num != (day - 3):
+                existing_battles.append((battle_day_num, detail_block))
+            elif is_training:
+                existing_training = detail_block
         else:
             i += 1
     
+    # Merge existing battles
     if 'battles' not in current_week_content:
         current_week_content['battles'] = []
     
