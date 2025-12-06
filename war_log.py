@@ -136,7 +136,6 @@ def parse_current_state(log):
                 except:
                     pass
             elif "Training Days" in line:
-                # Training days exist, so we're at least at day 3
                 day = max(day, 3)
     
     return season, week, day, is_colosseum
@@ -155,7 +154,7 @@ day += 1
 
 # Check week transitions
 new_week = False
-first_week = (season == 127 and week == 1)  # Track if we're in the first week
+first_week = (season == 127 and week == 1)
 
 if was_colosseum and day > 7:
     season += 1
@@ -200,17 +199,19 @@ if day in [4, 5, 6, 7]:
     battle_day = day - 3
     
     if colosseum:
-        max_decks = 4
+        # COLOSSEUM: Cumulative max decks (4, 8, 12, 16)
+        max_decks = battle_day * 4
         battle_content = []
         battle_content.append(f"### 🏟️ Battle Days 1–4 — {date_str}\n")
         battle_content.append("| Player | Decks Used Today | Fame |\n")
         battle_content.append("|-------|------------------|------|\n")
         for p in sorted_players:
             decks_today = p.get('decksUsedToday', 0)
-            battle_content.append(f"| {p['name']} | {decks_today}/4 | {p.get('fame', 0)} |\n")
+            battle_content.append(f"| {p['name']} | {decks_today}/{max_decks} | {p.get('fame', 0)} |\n")
         battle_content.append("\n")
         current_week_content['colosseum_battle'] = battle_content
     else:
+        # NORMAL: Always 4 per day
         max_decks = 4
         battle_content = []
         battle_content.append(f"### ⚔️ Battle Day {battle_day} — {date_str}\n")
@@ -218,7 +219,7 @@ if day in [4, 5, 6, 7]:
         battle_content.append("|-------|------------------|------|\n")
         for p in sorted_players:
             decks_today = p.get('decksUsedToday', 0)
-            battle_content.append(f"| {p['name']} | {decks_today}/4 | {p.get('fame', 0)} |\n")
+            battle_content.append(f"| {p['name']} | {decks_today}/{max_decks} | {p.get('fame', 0)} |\n")
         battle_content.append("\n")
         
         if 'battles' not in current_week_content:
@@ -318,7 +319,6 @@ if current_week_key in log_structure[season]:
             except:
                 pass
         elif existing_lines[i].startswith("### 🎯 Training Days"):
-            # Preserve existing training days
             training_lines = []
             while i < len(existing_lines) and not existing_lines[i].startswith("## "):
                 training_lines.append(existing_lines[i])
