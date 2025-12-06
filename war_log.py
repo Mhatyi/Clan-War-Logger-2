@@ -186,7 +186,7 @@ current_week_content = {}
 if day in TRAINING_DAYS and not first_week:
     training_content = []
     training_content.append("<details>\n")
-    training_content.append("<summary>### 🎯 Training Days 1–3</summary>\n\n")
+    training_content.append("<summary>🎯 Training Days 1–3</summary>\n\n")
     training_content.append("| Player | Decks Used Today | Fame |\n")
     training_content.append("|-------|------------------|------|\n")
     for p in sorted_players:
@@ -203,7 +203,7 @@ if day in [4, 5, 6, 7]:
         max_decks = battle_day * 4
         battle_content = []
         battle_content.append("<details>\n")
-        battle_content.append(f"<summary>### 🏟️ Battle Days 1–4 — {date_str}</summary>\n\n")
+        battle_content.append(f"<summary>🏟️ Battle Days 1–4 — {date_str}</summary>\n\n")
         battle_content.append("| Player | Decks Used Today | Fame |\n")
         battle_content.append("|-------|------------------|------|\n")
         for p in sorted_players:
@@ -216,7 +216,7 @@ if day in [4, 5, 6, 7]:
         max_decks = 4
         battle_content = []
         battle_content.append("<details>\n")
-        battle_content.append(f"<summary>### ⚔️ Battle Day {battle_day} — {date_str}</summary>\n\n")
+        battle_content.append(f"<summary>⚔️ Battle Day {battle_day} — {date_str}</summary>\n\n")
         battle_content.append("| Player | Decks Used Today | Fame |\n")
         battle_content.append("|-------|------------------|------|\n")
         for p in sorted_players:
