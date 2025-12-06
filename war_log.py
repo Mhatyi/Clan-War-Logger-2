@@ -185,12 +185,14 @@ if day in TRAINING_DAYS and not first_week:
     training_content = []
     training_content.append("<details>")
     training_content.append("<summary>🎯 Training Days 1–3</summary>")
+    training_content.append("")  # BLANK LINE
     training_content.append("| Player | Decks Used Today | Fame |")
     training_content.append("|-------|------------------|------|")
     for p in sorted_players:
         training_content.append(
             f"| {p['name']} | {p.get('decksUsedToday', 0)}/4 | {p.get('fame', 0)} |"
         )
+    training_content.append("")  # BLANK LINE
     training_content.append("</details>")
     training_content.append("")
     current_week_content["training"] = training_content
@@ -206,6 +208,7 @@ if day in [4, 5, 6, 7]:
         battle_content.append(
             f"<summary>🏟️ Battle Days 1–4 — {date_str}</summary>"
         )
+        battle_content.append("")  # BLANK LINE
         battle_content.append("| Player | Decks Used Today | Fame |")
         battle_content.append("|-------|------------------|------|")
         for p in sorted_players:
@@ -213,6 +216,7 @@ if day in [4, 5, 6, 7]:
             battle_content.append(
                 f"| {p['name']} | {decks_today}/{max_decks} | {p.get('fame', 0)} |"
             )
+        battle_content.append("")  # BLANK LINE
         battle_content.append("</details>")
         battle_content.append("")
         current_week_content["colosseum_battle"] = battle_content
@@ -224,6 +228,7 @@ if day in [4, 5, 6, 7]:
         battle_content.append(
             f"<summary>⚔️ Battle Day {battle_day} — {date_str}</summary>"
         )
+        battle_content.append("")  # BLANK LINE
         battle_content.append("| Player | Decks Used Today | Fame |")
         battle_content.append("|-------|------------------|------|")
         for p in sorted_players:
@@ -231,14 +236,13 @@ if day in [4, 5, 6, 7]:
             battle_content.append(
                 f"| {p['name']} | {decks_today}/{max_decks} | {p.get('fame', 0)} |"
             )
+        battle_content.append("")  # BLANK LINE
         battle_content.append("</details>")
         battle_content.append("")
 
         if "battles" not in current_week_content:
             current_week_content["battles"] = []
         current_week_content["battles"].append((battle_day, battle_content))
-
-# ----------------- (rest of your file remains unchanged) -----------------
 
 # ----------------- REBUILD ENTIRE LOG (REVERSED ORDER) -----------------
 log_structure = {}
