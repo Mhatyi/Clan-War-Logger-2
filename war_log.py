@@ -186,12 +186,12 @@ current_week_content = {}
 if day in TRAINING_DAYS and not first_week:
     training_content = []
     training_content.append("<details>\n")
-    training_content.append("<summary>🎯 Training Days 1–3</summary>\n\n")
-    training_content.append("| Player | Decks Used Today | Fame |\n")
+    training_content.append("<summary>🎯 Training Days 1–3</summary>\n")
+    training_content.append("\n| Player | Decks Used Today | Fame |\n")
     training_content.append("|-------|------------------|------|\n")
     for p in sorted_players:
         training_content.append(f"| {p['name']} | {p.get('decksUsedToday', 0)}/4 | {p.get('fame', 0)} |\n")
-    training_content.append("\n</details>\n\n")
+    training_content.append("</details>\n")
     current_week_content['training'] = training_content
 
 # Battle Days
@@ -203,26 +203,25 @@ if day in [4, 5, 6, 7]:
         max_decks = battle_day * 4
         battle_content = []
         battle_content.append("<details>\n")
-        battle_content.append(f"<summary>🏟️ Battle Days 1–4 — {date_str}</summary>\n\n")
-        battle_content.append("| Player | Decks Used Today | Fame |\n")
+        battle_content.append(f"<summary>🏟️ Battle Days 1–4 — {date_str}</summary>\n")
+        battle_content.append("\n| Player | Decks Used Today | Fame |\n")
         battle_content.append("|-------|------------------|------|\n")
         for p in sorted_players:
             decks_today = p.get('decksUsedToday', 0)
             battle_content.append(f"| {p['name']} | {decks_today}/{max_decks} | {p.get('fame', 0)} |\n")
-        battle_content.append("\n</details>\n\n")
+        battle_content.append("</details>\n")
         current_week_content['colosseum_battle'] = battle_content
     else:
-        # NORMAL: Always 4 per day
         max_decks = 4
         battle_content = []
         battle_content.append("<details>\n")
-        battle_content.append(f"<summary>⚔️ Battle Day {battle_day} — {date_str}</summary>\n\n")
-        battle_content.append("| Player | Decks Used Today | Fame |\n")
+        battle_content.append(f"<summary>⚔️ Battle Day {battle_day} — {date_str}</summary>\n")
+        battle_content.append("\n| Player | Decks Used Today | Fame |\n")
         battle_content.append("|-------|------------------|------|\n")
         for p in sorted_players:
             decks_today = p.get('decksUsedToday', 0)
-            battle_content.append(f"| {p['name']} | {decks_today}/{max_decks} | {p.get('fame', 0)} |\n")
-        battle_content.append("\n</details>\n\n")
+            battle_content.append(f"| {p['name']} | {decks_used_today}/{max_decks} | {p.get('fame', 0)} |\n")
+        battle_content.append("</details>\n")
         
         if 'battles' not in current_week_content:
             current_week_content['battles'] = []
@@ -302,7 +301,6 @@ if 'training' in current_week_content:
 if current_week_key in log_structure[season]:
     existing_lines = log_structure[season][current_week_key]
     
-    # Extract existing battle days and training
     existing_battles = []
     existing_training = []
     i = 0
@@ -311,11 +309,9 @@ if current_week_key in log_structure[season]:
         line = existing_lines[i]
         
         if line.startswith("<details>"):
-            # Capture entire details block
             detail_block = [line]
             i += 1
             
-            # Check what type of block this is
             is_battle = False
             is_training = False
             battle_day_num = None
@@ -337,7 +333,6 @@ if current_week_key in log_structure[season]:
                     break
                 i += 1
             
-            # Store the block
             if is_battle and battle_day_num and battle_day_num != (day - 3):
                 existing_battles.append((battle_day_num, detail_block))
             elif is_training:
@@ -345,14 +340,12 @@ if current_week_key in log_structure[season]:
         else:
             i += 1
     
-    # Merge existing battles
     if 'battles' not in current_week_content:
         current_week_content['battles'] = []
     
     for battle_day_num, battle_lines in existing_battles:
         current_week_content['battles'].append((battle_day_num, battle_lines))
     
-    # Rebuild week_lines
     week_lines = []
     if current_week_content.get('battles'):
         sorted_battles = sorted(current_week_content['battles'], key=lambda x: x[0], reverse=True)
@@ -361,7 +354,6 @@ if current_week_key in log_structure[season]:
     elif 'colosseum_battle' in current_week_content:
         week_lines.extend(current_week_content['colosseum_battle'])
     
-    # Add training (prefer new if exists, else keep old)
     if 'training' in current_week_content:
         week_lines.extend(current_week_content['training'])
     elif existing_training:
