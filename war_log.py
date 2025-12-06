@@ -183,15 +183,16 @@ current_week_content = {}
 # Training Days
 if day in TRAINING_DAYS and not first_week:
     training_content = []
-    training_content.append("<details>\n")
-    training_content.append("<summary>🎯 Training Days 1–3</summary>\n\n")
-    training_content.append("| Player | Decks Used Today | Fame |\n")
-    training_content.append("|-------|------------------|------|\n")
+    training_content.append("<details>")
+    training_content.append("<summary>🎯 Training Days 1–3</summary>")
+    training_content.append("| Player | Decks Used Today | Fame |")
+    training_content.append("|-------|------------------|------|")
     for p in sorted_players:
         training_content.append(
-            f"| {p['name']} | {p.get('decksUsedToday', 0)}/4 | {p.get('fame', 0)} |\n"
+            f"| {p['name']} | {p.get('decksUsedToday', 0)}/4 | {p.get('fame', 0)} |"
         )
-    training_content.append("\n</details>\n\n")
+    training_content.append("</details>")
+    training_content.append("")
     current_week_content["training"] = training_content
 
 # Battle Days
@@ -201,43 +202,43 @@ if day in [4, 5, 6, 7]:
     if colosseum:
         max_decks = battle_day * 4
         battle_content = []
-        battle_content.append("<details>\n")
+        battle_content.append("<details>")
         battle_content.append(
-            f"<summary>🏟️ Battle Days 1–4 — {date_str}</summary>\n\n"
+            f"<summary>🏟️ Battle Days 1–4 — {date_str}</summary>"
         )
-        battle_content.append("| Player | Decks Used Today | Fame |\n")
-        battle_content.append("|-------|------------------|------|\n")
+        battle_content.append("| Player | Decks Used Today | Fame |")
+        battle_content.append("|-------|------------------|------|")
         for p in sorted_players:
             decks_today = p.get("decksUsedToday", p.get("decksUsed", 0))
             battle_content.append(
-                f"| {p['name']} | {decks_today}/{max_decks} | {p.get('fame', 0)} |\n"
+                f"| {p['name']} | {decks_today}/{max_decks} | {p.get('fame', 0)} |"
             )
-        battle_content.append("\n</details>\n\n")
+        battle_content.append("</details>")
+        battle_content.append("")
         current_week_content["colosseum_battle"] = battle_content
 
     else:
         max_decks = 4
         battle_content = []
-        battle_content.append("<details>\n")
+        battle_content.append("<details>")
         battle_content.append(
-            f"<summary>⚔️ Battle Day {battle_day} — {date_str}</summary>\n\n"
+            f"<summary>⚔️ Battle Day {battle_day} — {date_str}</summary>"
         )
-        battle_content.append("| Player | Decks Used Today | Fame |\n")
-        battle_content.append("|-------|------------------|------|\n")
+        battle_content.append("| Player | Decks Used Today | Fame |")
+        battle_content.append("|-------|------------------|------|")
         for p in sorted_players:
             decks_today = p.get("decksUsedToday", p.get("decksUsed", 0))
             battle_content.append(
-                f"| {p['name']} | {decks_today}/{max_decks} | {p.get('fame', 0)} |\n"
+                f"| {p['name']} | {decks_today}/{max_decks} | {p.get('fame', 0)} |"
             )
-        battle_content.append("\n</details>\n\n")
+        battle_content.append("</details>")
+        battle_content.append("")
 
         if "battles" not in current_week_content:
             current_week_content["battles"] = []
         current_week_content["battles"].append((battle_day, battle_content))
 
 # ----------------- (rest of your file remains unchanged) -----------------
-# Everything below here is IDENTICAL to what you posted originally
-# No edits, no formatting changes, no logic changes
 
 # ----------------- REBUILD ENTIRE LOG (REVERSED ORDER) -----------------
 log_structure = {}
@@ -391,7 +392,7 @@ output_lines = []
 sorted_seasons = sorted(log_structure.keys(), reverse=True)
 
 for s in sorted_seasons:
-    output_lines.append(f"# Season {s}\n")
+    output_lines.append(f"# Season {s}")
     output_lines.append("")
 
     weeks = log_structure[s]
@@ -407,9 +408,9 @@ for s in sorted_seasons:
 
     for _, week_key in week_keys:
         if week_key == "colosseum":
-            output_lines.append("## 🏟️ Colosseum Week\n")
+            output_lines.append("## 🏟️ Colosseum Week")
         else:
-            output_lines.append(f"## Week {week_key}\n")
+            output_lines.append(f"## Week {week_key}")
 
         output_lines.append("")
         output_lines.extend(weeks[week_key])
