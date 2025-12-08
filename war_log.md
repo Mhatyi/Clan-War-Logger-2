@@ -3,6 +3,64 @@
 ## Week 1
 
 <details>
+<summary>⚔️ Battle Day 4 — 2025-12-08</summary>
+
+| Player | Decks Used Today | Fame |
+|-------|------------------|------|
+| Mhatyi | 0/4 | 3200 |
+| øćīẽřòëß | 0/4 | 2900 |
+| Xx Old Goat xX | 0/4 | 2500 |
+| VKG Loureiro | 0/4 | 2400 |
+| LEO | 0/4 | 2200 |
+| ukw❦ | 0/4 | 2200 |
+| mateka421 | 0/4 | 2000 |
+| Eze | 0/4 | 1950 |
+| Ikaussa | 0/4 | 2300 |
+| Pjra18 | 0/4 | 1850 |
+| Somonkey | 0/4 | 2400 |
+| sigmašito | 0/4 | 2100 |
+| Prince | 0/4 | 1900 |
+| rolcsi | 0/4 | 1900 |
+| Kerem | 0/4 | 1700 |
+| Omer | 0/4 | 1500 |
+| RestlessHC | 0/4 | 1600 |
+| NCGebyte20 | 0/4 | 1600 |
+| el bengador | 0/4 | 1500 |
+| <c2>Ben | 0/4 | 1300 |
+| wizf | 0/4 | 1300 |
+| Lol Xd | 0/4 | 1175 |
+| Quini 09 | 0/4 | 1300 |
+| cesarito14 | 0/4 | 1050 |
+| ollie | 0/4 | 900 |
+| VLAD | 0/4 | 1125 |
+| VLAD | 0/4 | 975 |
+| Sekys | 0/4 | 1000 |
+| Zokni | 0/4 | 800 |
+| Rune | 0/4 | 500 |
+| Levikeke | 0/4 | 700 |
+| Lrig1337 | 0/4 | 700 |
+| YoLo | 0/4 | 700 |
+| Gale | 0/4 | 350 |
+| Merse_gamer | 0/4 | 450 |
+| ULTRABOY | 0/4 | 300 |
+| kasper | 0/4 | 300 |
+| best efem | 0/4 | 200 |
+| SG|HAMBI | 0/4 | 100 |
+| Alberttoto08£ | 0/4 | 75 |
+| Adam | 0/4 | 0 |
+| brayam | 0/4 | 0 |
+| buzipitypang | 0/4 | 0 |
+| Flamewater23 | 0/4 | 0 |
+| Immu | 0/4 | 0 |
+| kinglag | 0/4 | 0 |
+| LordMarkusHUN | 0/4 | 0 |
+| szl_brn | 0/4 | 0 |
+| Viktor01 | 0/4 | 0 |
+| Wambly | 0/4 | 0 |
+
+</details>
+
+<details>
 <summary>⚔️ Battle Day 3 — 2025-12-07</summary>
 
 | Player | Decks Used Today | Fame |
