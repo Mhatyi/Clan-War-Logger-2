@@ -1,6 +1,10 @@
 # Season 127
 
+## Week 2
+
+
 ## Week 1
+
 
 <details>
 <summary>⚔️ Battle Day 4 — 2025-12-08</summary>
