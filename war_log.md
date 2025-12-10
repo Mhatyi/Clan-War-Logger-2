@@ -2,8 +2,64 @@
 
 ## Week 2
 
+<details>
+<summary>🎯 Training Days 1–3</summary>
+
+| Player | Decks Used Today | Fame |
+|-------|------------------|------|
+| Gery | 4/4 | 0 |
+| ollie | 2/4 | 0 |
+| Lrig1337 | 1/4 | 0 |
+| <c2>Ben | 0/4 | 0 |
+| Adam | 0/4 | 0 |
+| Alberttoto08£ | 0/4 | 0 |
+| best efem | 0/4 | 0 |
+| buzipitypang | 0/4 | 0 |
+| cesarito14 | 0/4 | 0 |
+| Eze | 0/4 | 0 |
+| Flamewater23 | 0/4 | 0 |
+| Gale | 0/4 | 0 |
+| Ikaussa | 0/4 | 0 |
+| Immu | 0/4 | 0 |
+| Kerem | 0/4 | 0 |
+| LEO | 0/4 | 0 |
+| Levikeke | 0/4 | 0 |
+| Lol Xd | 0/4 | 0 |
+| LordMarkusHUN | 0/4 | 0 |
+| mateka421 | 0/4 | 0 |
+| Merse_gamer | 0/4 | 0 |
+| Mhatyi | 0/4 | 0 |
+| NCGebyte20 | 0/4 | 0 |
+| Omer | 0/4 | 0 |
+| Pjra18 | 0/4 | 0 |
+| Prince | 0/4 | 0 |
+| Quini 09 | 0/4 | 0 |
+| RestlessHC | 0/4 | 0 |
+| rolcsi | 0/4 | 0 |
+| Rune | 0/4 | 0 |
+| Sekys | 0/4 | 0 |
+| SG|HAMBI | 0/4 | 0 |
+| sigmašito | 0/4 | 0 |
+| Somonkey | 0/4 | 0 |
+| szl_brn | 0/4 | 0 |
+| ukw❦ | 0/4 | 0 |
+| ULTRABOY | 0/4 | 0 |
+| Viktor01 | 0/4 | 0 |
+| VKG Loureiro | 0/4 | 0 |
+| VLAD | 0/4 | 0 |
+| VLAD | 0/4 | 0 |
+| Wambly | 0/4 | 0 |
+| wizf | 0/4 | 0 |
+| Xx Old Goat xX | 0/4 | 0 |
+| YoLo | 0/4 | 0 |
+| Zokni | 0/4 | 0 |
+| øćīẽřòëß | 0/4 | 0 |
+
+</details>
+
 
 ## Week 1
+
 
 
 <details>
