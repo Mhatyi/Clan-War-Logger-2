@@ -3,6 +3,63 @@
 ## Week 3
 
 <details>
+<summary>⚔️ Battle Day 4 — 2025-12-19</summary>
+
+| Player | Decks Used Today | Fame |
+|-------|------------------|------|
+| Lol Xd | 4/4 | 900 |
+| Zodan00 | 4/4 | 900 |
+| <c2>Ben | 4/4 | 700 |
+| Kerem | 4/4 | 700 |
+| Ikaussa | 4/4 | 600 |
+| Omer | 4/4 | 600 |
+| Somonkey | 4/4 | 600 |
+| RestlessHC | 4/4 | 550 |
+| Eze | 4/4 | 500 |
+| LEO | 4/4 | 500 |
+| Xx Old Goat xX | 4/4 | 400 |
+| Gale | 4/4 | 300 |
+| buzipitypang | 3/4 | 600 |
+| Prince | 1/4 | 200 |
+| ukw❦ | 1/4 | 200 |
+| VLAD | 1/4 | 200 |
+| VLAD | 1/4 | 200 |
+| Gery | 1/4 | 100 |
+| Adam | 0/4 | 0 |
+| Alberttoto08£ | 0/4 | 0 |
+| best efem | 0/4 | 0 |
+| cesarito14 | 0/4 | 0 |
+| Csahoibakuganok | 0/4 | 0 |
+| Flamewater23 | 0/4 | 0 |
+| Immu | 0/4 | 0 |
+| Kismagyar 2 | 0/4 | 0 |
+| Levikeke | 0/4 | 0 |
+| LordMarkusHUN | 0/4 | 0 |
+| Lrig1337 | 0/4 | 0 |
+| Mada | 0/4 | 0 |
+| mateka421 | 0/4 | 0 |
+| Merse_gamer | 0/4 | 0 |
+| Mhatyi | 0/4 | 0 |
+| NCGebyte20 | 0/4 | 0 |
+| ollie | 0/4 | 0 |
+| Pjra18 | 0/4 | 0 |
+| Quini 09 | 0/4 | 0 |
+| rolcsi | 0/4 | 0 |
+| Sekys | 0/4 | 0 |
+| SG|HAMBI | 0/4 | 0 |
+| sigmašito | 0/4 | 0 |
+| Supercell | 0/4 | 0 |
+| ULTRABOY | 0/4 | 0 |
+| Viktor01 | 0/4 | 0 |
+| Wambly | 0/4 | 0 |
+| wizf | 0/4 | 0 |
+| YoLo | 0/4 | 0 |
+| Zokni | 0/4 | 0 |
+| Árpi | 0/4 | 0 |
+
+</details>
+
+<details>
 <summary>⚔️ Battle Day 3 — 2025-12-18</summary>
 
 | Player | Decks Used Today | Fame |
@@ -54,7 +111,6 @@
 | Zokni | 0/4 | 0 |
 
 </details>
-
 <details>
 <summary>⚔️ Battle Day 2 — 2025-12-17</summary>
 
@@ -212,6 +268,7 @@
 </details>
 
 ## Week 2
+
 
 
 
@@ -489,7 +546,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
