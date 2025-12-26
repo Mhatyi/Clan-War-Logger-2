@@ -3,6 +3,59 @@
 ## 🏟️ Colosseum Week
 
 <details>
+<summary>🏟️ Battle Days 1–4 — 2025-12-26</summary>
+
+| Player | Decks Used Today | Fame |
+|-------|------------------|------|
+| Lol Xd | 4/4 | 900 |
+| Ikaussa | 4/4 | 700 |
+| LEO | 4/4 | 700 |
+| Somonkey | 4/4 | 400 |
+| Xx Old Goat xX | 4/4 | 400 |
+| sigmašito | 3/4 | 500 |
+| <c2>Ben | 3/4 | 300 |
+| Zodan00 | 2/4 | 500 |
+| Csahoibakuganok | 2/4 | 300 |
+| NCGebyte20 | 2/4 | 300 |
+| Omer | 2/4 | 300 |
+| mateka421 | 2/4 | 200 |
+| Lrig1337 | 1/4 | 200 |
+| Alberttoto08£ | 0/4 | 0 |
+| best efem | 0/4 | 0 |
+| buzipitypang | 0/4 | 0 |
+| cesarito14 | 0/4 | 0 |
+| Flamewater23 | 0/4 | 0 |
+| Gale | 0/4 | 0 |
+| Gery | 0/4 | 0 |
+| Immu | 0/4 | 0 |
+| Kismagyar 2 | 0/4 | 0 |
+| Levikeke | 0/4 | 0 |
+| LordMarkusHUN | 0/4 | 0 |
+| lábfétisenjoyer | 0/4 | 0 |
+| Mada | 0/4 | 0 |
+| Merse_gamer | 0/4 | 0 |
+| Mhatyi | 0/4 | 0 |
+| ollie | 0/4 | 0 |
+| Pjra18 | 0/4 | 0 |
+| Prince | 0/4 | 0 |
+| Quini 09 | 0/4 | 0 |
+| rolcsi | 0/4 | 0 |
+| Sekys | 0/4 | 0 |
+| SG|HAMBI | 0/4 | 0 |
+| Supercell | 0/4 | 0 |
+| tatetomate | 0/4 | 0 |
+| ukw❦ | 0/4 | 0 |
+| ULTRABOY | 0/4 | 0 |
+| Viktor01 | 0/4 | 0 |
+| Wambly | 0/4 | 0 |
+| wizf | 0/4 | 0 |
+| YoLo | 0/4 | 0 |
+| Zokni | 0/4 | 0 |
+| Árpi | 0/4 | 0 |
+
+</details>
+
+<details>
 <summary>🎯 Training Days 1–3</summary>
 
 | Player | Decks Used Today | Fame |
@@ -55,8 +108,8 @@
 
 </details>
 
-
 ## Week 4
+
 
 
 <details>
@@ -329,7 +382,9 @@
 </details>
 
 
+
 ## Week 3
+
 
 
 
@@ -608,7 +663,9 @@
 
 
 
+
 ## Week 2
+
 
 
 
@@ -900,7 +957,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
