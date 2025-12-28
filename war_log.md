@@ -3,26 +3,26 @@
 ## 🏟️ Colosseum Week
 
 <details>
-<summary>🏟️ Battle Days 1–4 — 2025-12-27</summary>
+<summary>🏟️ Battle Days 1–4 — 2025-12-28</summary>
 
 | Player | Decks Used Today | Fame |
 |-------|------------------|------|
-| Lol Xd | 4/16 | 1800 |
-| Ikaussa | 4/16 | 1400 |
-| LEO | 4/16 | 1400 |
-| Levikeke | 4/16 | 600 |
-| Prince | 4/16 | 600 |
-| Gale | 4/16 | 300 |
-| <c2>Ben | 3/16 | 900 |
-| Omer | 3/16 | 700 |
-| mateka421 | 3/16 | 600 |
-| Lrig1337 | 3/16 | 700 |
-| LordMarkusHUN | 3/16 | 400 |
-| Zodan00 | 2/16 | 1000 |
-| Csahoibakuganok | 2/16 | 600 |
-| Somonkey | 0/16 | 400 |
+| Lol Xd | 4/16 | 2400 |
+| Ikaussa | 4/16 | 2000 |
+| LEO | 4/16 | 2000 |
+| LordMarkusHUN | 4/16 | 1000 |
+| Somonkey | 2/16 | 600 |
+| sigmašito | 1/16 | 600 |
+| <c2>Ben | 0/16 | 900 |
+| Omer | 0/16 | 700 |
+| mateka421 | 0/16 | 600 |
+| Zodan00 | 0/16 | 1000 |
+| Lrig1337 | 0/16 | 700 |
+| Csahoibakuganok | 0/16 | 600 |
+| Levikeke | 0/16 | 600 |
+| Prince | 0/16 | 600 |
 | Xx Old Goat xX | 0/16 | 400 |
-| sigmašito | 0/16 | 500 |
+| Gale | 0/16 | 300 |
 | NCGebyte20 | 0/16 | 300 |
 | Alberttoto08£ | 0/16 | 0 |
 | best efem | 0/16 | 0 |
@@ -109,6 +109,7 @@
 </details>
 
 ## Week 4
+
 
 
 
@@ -385,7 +386,9 @@
 
 
 
+
 ## Week 3
+
 
 
 
@@ -668,7 +671,9 @@
 
 
 
+
 ## Week 2
+
 
 
 
@@ -964,7 +969,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
