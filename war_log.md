@@ -3,10 +3,13 @@
 ## 🏟️ Colosseum Week
 
 <details>
-<summary>🏟️ Battle Days 1–4 — 2025-12-31</summary>
+<summary>🏟️ Battle Days 1–4 — 2026-01-01</summary>
 
 | Player | Decks Used Today | Fame |
 |-------|------------------|------|
+| LordMarkusHUN | 3/16 | 0 |
+| Lrig1337 | 1/16 | 0 |
+| mateka421 | 1/16 | 0 |
 | <c2>Ben | 0/16 | 0 |
 | Alberttoto08£ | 0/16 | 0 |
 | best efem | 0/16 | 0 |
@@ -21,11 +24,8 @@
 | Kismagyar 2 | 0/16 | 0 |
 | Levikeke | 0/16 | 0 |
 | Lol Xd | 0/16 | 0 |
-| LordMarkusHUN | 0/16 | 0 |
-| Lrig1337 | 0/16 | 0 |
 | lábfétisenjoyer | 0/16 | 0 |
 | Mada | 0/16 | 0 |
-| mateka421 | 0/16 | 0 |
 | Merse_gamer | 0/16 | 0 |
 | Mhatyi | 0/16 | 0 |
 | NCGebyte20 | 0/16 | 0 |
@@ -108,6 +108,7 @@
 </details>
 
 ## Week 4
+
 
 
 
@@ -392,7 +393,9 @@
 
 
 
+
 ## Week 3
+
 
 
 
@@ -683,7 +686,9 @@
 
 
 
+
 ## Week 2
+
 
 
 
@@ -987,7 +992,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
