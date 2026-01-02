@@ -3,19 +3,19 @@
 ## 🏟️ Colosseum Week
 
 <details>
-<summary>🏟️ Battle Days 1–4 — 2026-01-01</summary>
+<summary>🏟️ Battle Days 1–4 — 2026-01-02</summary>
 
 | Player | Decks Used Today | Fame |
 |-------|------------------|------|
-| LordMarkusHUN | 3/16 | 0 |
-| Lrig1337 | 1/16 | 0 |
-| mateka421 | 1/16 | 0 |
+| Zodan00 | 4/16 | 700 |
+| sigmašito | 4/16 | 500 |
+| mateka421 | 3/16 | 300 |
+| Csahoibakuganok | 2/16 | 200 |
 | <c2>Ben | 0/16 | 0 |
 | Alberttoto08£ | 0/16 | 0 |
 | best efem | 0/16 | 0 |
 | buzipitypang | 0/16 | 0 |
 | cesarito14 | 0/16 | 0 |
-| Csahoibakuganok | 0/16 | 0 |
 | Flamewater23 | 0/16 | 0 |
 | Gale | 0/16 | 0 |
 | Gery | 0/16 | 0 |
@@ -24,6 +24,8 @@
 | Kismagyar 2 | 0/16 | 0 |
 | Levikeke | 0/16 | 0 |
 | Lol Xd | 0/16 | 0 |
+| LordMarkusHUN | 0/16 | 0 |
+| Lrig1337 | 0/16 | 0 |
 | lábfétisenjoyer | 0/16 | 0 |
 | Mada | 0/16 | 0 |
 | Merse_gamer | 0/16 | 0 |
@@ -36,10 +38,8 @@
 | rolcsi | 0/16 | 0 |
 | Sekys | 0/16 | 0 |
 | SG|HAMBI | 0/16 | 0 |
-| sigmašito | 0/16 | 0 |
 | Somonkey | 0/16 | 0 |
 | Supercell | 0/16 | 0 |
-| tatetomate | 0/16 | 0 |
 | ukw❦ | 0/16 | 0 |
 | ULTRABOY | 0/16 | 0 |
 | Viktor01 | 0/16 | 0 |
@@ -47,7 +47,6 @@
 | wizf | 0/16 | 0 |
 | Xx Old Goat xX | 0/16 | 0 |
 | YoLo | 0/16 | 0 |
-| Zodan00 | 0/16 | 0 |
 | Zokni | 0/16 | 0 |
 | Árpi | 0/16 | 0 |
 | érdi ts ár | 0/16 | 0 |
@@ -108,6 +107,7 @@
 </details>
 
 ## Week 4
+
 
 
 
@@ -394,7 +394,9 @@
 
 
 
+
 ## Week 3
+
 
 
 
@@ -687,7 +689,9 @@
 
 
 
+
 ## Week 2
+
 
 
 
@@ -993,7 +997,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
