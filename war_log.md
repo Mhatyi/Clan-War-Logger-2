@@ -3,24 +3,16 @@
 ## 🏟️ Colosseum Week
 
 <details>
-<summary>🏟️ Battle Days 1–4 — 2026-01-04</summary>
+<summary>🏟️ Battle Days 1–4 — 2026-01-05</summary>
 
 | Player | Decks Used Today | Fame |
 |-------|------------------|------|
-| Zodan00 | 4/16 | 2400 |
-| Xx Old Goat xX | 4/16 | 600 |
-| cesarito14 | 4/16 | 400 |
-| Lrig1337 | 1/16 | 200 |
-| sigmašito | 0/16 | 800 |
-| mateka421 | 0/16 | 400 |
-| Csahoibakuganok | 0/16 | 200 |
-| LordMarkusHUN | 0/16 | 200 |
-| ukw❦ | 0/16 | 200 |
-| NCGebyte20 | 0/16 | 100 |
 | <c2>Ben | 0/16 | 0 |
 | Alberttoto08£ | 0/16 | 0 |
 | best efem | 0/16 | 0 |
 | buzipitypang | 0/16 | 0 |
+| cesarito14 | 0/16 | 0 |
+| Csahoibakuganok | 0/16 | 0 |
 | Flamewater23 | 0/16 | 0 |
 | Gale | 0/16 | 0 |
 | Gery | 0/16 | 0 |
@@ -29,10 +21,14 @@
 | Kismagyar 2 | 0/16 | 0 |
 | Levikeke | 0/16 | 0 |
 | Lol Xd | 0/16 | 0 |
+| LordMarkusHUN | 0/16 | 0 |
+| Lrig1337 | 0/16 | 0 |
 | lábfétisenjoyer | 0/16 | 0 |
 | Mada | 0/16 | 0 |
+| mateka421 | 0/16 | 0 |
 | Merse_gamer | 0/16 | 0 |
 | Mhatyi | 0/16 | 0 |
+| NCGebyte20 | 0/16 | 0 |
 | ollie | 0/16 | 0 |
 | Omer | 0/16 | 0 |
 | Pjra18 | 0/16 | 0 |
@@ -40,13 +36,18 @@
 | rolcsi | 0/16 | 0 |
 | Sekys | 0/16 | 0 |
 | SG|HAMBI | 0/16 | 0 |
+| sigmašito | 0/16 | 0 |
 | Somonkey | 0/16 | 0 |
 | Supercell | 0/16 | 0 |
+| TRX_8 | 0/16 | 0 |
+| ukw❦ | 0/16 | 0 |
 | ULTRABOY | 0/16 | 0 |
 | Viktor01 | 0/16 | 0 |
 | Wambly | 0/16 | 0 |
 | wizf | 0/16 | 0 |
+| Xx Old Goat xX | 0/16 | 0 |
 | YoLo | 0/16 | 0 |
+| Zodan00 | 0/16 | 0 |
 | Zokni | 0/16 | 0 |
 | Árpi | 0/16 | 0 |
 | érdi ts ár | 0/16 | 0 |
@@ -107,6 +108,7 @@
 </details>
 
 ## Week 4
+
 
 
 
@@ -399,7 +401,9 @@
 
 
 
+
 ## Week 3
+
 
 
 
@@ -698,7 +702,9 @@
 
 
 
+
 ## Week 2
+
 
 
 
@@ -1010,7 +1016,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
