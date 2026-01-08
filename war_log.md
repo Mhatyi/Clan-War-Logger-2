@@ -3,7 +3,7 @@
 ## 🏟️ Colosseum Week
 
 <details>
-<summary>🏟️ Battle Days 1–4 — 2026-01-07</summary>
+<summary>🏟️ Battle Days 1–4 — 2026-01-08</summary>
 
 | Player | Decks Used Today | Fame |
 |-------|------------------|------|
@@ -27,6 +27,7 @@
 | Omer | 0/16 | 0 |
 | Prince | 0/16 | 0 |
 | rolcsi | 0/16 | 0 |
+| SG|HAMBI | 0/16 | 0 |
 | sigmašito | 0/16 | 0 |
 | Somonkey | 0/16 | 0 |
 | Supercell | 0/16 | 0 |
@@ -96,6 +97,7 @@
 </details>
 
 ## Week 4
+
 
 
 
@@ -394,7 +396,9 @@
 
 
 
+
 ## Week 3
+
 
 
 
@@ -699,7 +703,9 @@
 
 
 
+
 ## Week 2
+
 
 
 
@@ -1017,7 +1023,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
