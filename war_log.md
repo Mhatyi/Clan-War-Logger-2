@@ -3,25 +3,21 @@
 ## 🏟️ Colosseum Week
 
 <details>
-<summary>🏟️ Battle Days 1–4 — 2026-01-11</summary>
+<summary>🏟️ Battle Days 1–4 — 2026-01-12</summary>
 
 | Player | Decks Used Today | Fame |
 |-------|------------------|------|
-| Gale | 0/16 | 600 |
-| Xx Old Goat xX | 0/16 | 600 |
-| lábfétisenjoyer | 0/16 | 300 |
-| Adam | 0/16 | 500 |
-| LordMarkusHUN | 0/16 | 200 |
-| sigmašito | 0/16 | 200 |
-| Csahoibakuganok | 0/16 | 100 |
 | Alberttoto08£ | 0/16 | 0 |
 | best efem | 0/16 | 0 |
 | buzipitypang | 0/16 | 0 |
 | cesarito14 | 0/16 | 0 |
+| Csahoibakuganok | 0/16 | 0 |
+| Gale | 0/16 | 0 |
 | Gery | 0/16 | 0 |
 | Immu | 0/16 | 0 |
 | Levikeke | 0/16 | 0 |
-| Lol Xd | 0/16 | 0 |
+| LordMarkusHUN | 0/16 | 0 |
+| lábfétisenjoyer | 0/16 | 0 |
 | Merse_gamer | 0/16 | 0 |
 | Mhatyi | 0/16 | 0 |
 | NCGebyte20 | 0/16 | 0 |
@@ -30,13 +26,16 @@
 | Prince | 0/16 | 0 |
 | rolcsi | 0/16 | 0 |
 | SG|HAMBI | 0/16 | 0 |
+| sigmašito | 0/16 | 0 |
 | Somonkey | 0/16 | 0 |
 | Supercell | 0/16 | 0 |
 | TRX_8 | 0/16 | 0 |
 | ukw❦ | 0/16 | 0 |
+| ULTRABOY | 0/16 | 0 |
 | Viktor01 | 0/16 | 0 |
 | Wambly | 0/16 | 0 |
 | wizf | 0/16 | 0 |
+| Xx Old Goat xX | 0/16 | 0 |
 | Zodan00 | 0/16 | 0 |
 | Zokni | 0/16 | 0 |
 | Árpi | 0/16 | 0 |
@@ -98,6 +97,7 @@
 </details>
 
 ## Week 4
+
 
 
 
@@ -404,7 +404,9 @@
 
 
 
+
 ## Week 3
+
 
 
 
@@ -717,7 +719,9 @@
 
 
 
+
 ## Week 2
+
 
 
 
@@ -1043,7 +1047,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
