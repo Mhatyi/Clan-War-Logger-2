@@ -3,7 +3,7 @@
 ## 🏟️ Colosseum Week
 
 <details>
-<summary>🏟️ Battle Days 1–4 — 2026-01-12</summary>
+<summary>🏟️ Battle Days 1–4 — 2026-01-13</summary>
 
 | Player | Decks Used Today | Fame |
 |-------|------------------|------|
@@ -17,7 +17,6 @@
 | Immu | 0/16 | 0 |
 | Levikeke | 0/16 | 0 |
 | LordMarkusHUN | 0/16 | 0 |
-| lábfétisenjoyer | 0/16 | 0 |
 | Merse_gamer | 0/16 | 0 |
 | Mhatyi | 0/16 | 0 |
 | NCGebyte20 | 0/16 | 0 |
@@ -97,6 +96,7 @@
 </details>
 
 ## Week 4
+
 
 
 
@@ -405,7 +405,9 @@
 
 
 
+
 ## Week 3
+
 
 
 
@@ -720,7 +722,9 @@
 
 
 
+
 ## Week 2
+
 
 
 
@@ -1048,7 +1052,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
