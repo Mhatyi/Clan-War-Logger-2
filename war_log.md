@@ -3,13 +3,10 @@
 ## 🏟️ Colosseum Week
 
 <details>
-<summary>🏟️ Battle Days 1–4 — 2026-01-18</summary>
+<summary>🏟️ Battle Days 1–4 — 2026-01-19</summary>
 
 | Player | Decks Used Today | Fame |
 |-------|------------------|------|
-| Xx Old Goat xX | 0/16 | 400 |
-| Zodan00 | 0/16 | 200 |
-| Levikeke | 0/16 | 100 |
 | Alberttoto08£ | 0/16 | 0 |
 | best efem | 0/16 | 0 |
 | buzipitypang | 0/16 | 0 |
@@ -18,6 +15,7 @@
 | Gale | 0/16 | 0 |
 | Gery | 0/16 | 0 |
 | Immu | 0/16 | 0 |
+| Levikeke | 0/16 | 0 |
 | LordMarkusHUN | 0/16 | 0 |
 | Merse_gamer | 0/16 | 0 |
 | Mhatyi | 0/16 | 0 |
@@ -33,6 +31,8 @@
 | Viktor01 | 0/16 | 0 |
 | Wambly | 0/16 | 0 |
 | wizf | 0/16 | 0 |
+| Xx Old Goat xX | 0/16 | 0 |
+| Zodan00 | 0/16 | 0 |
 | Zokni | 0/16 | 0 |
 | Árpi | 0/16 | 0 |
 | érdi ts ár | 0/16 | 0 |
@@ -93,6 +93,7 @@
 </details>
 
 ## Week 4
+
 
 
 
@@ -413,7 +414,9 @@
 
 
 
+
 ## Week 3
+
 
 
 
@@ -740,7 +743,9 @@
 
 
 
+
 ## Week 2
+
 
 
 
@@ -1080,7 +1085,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
