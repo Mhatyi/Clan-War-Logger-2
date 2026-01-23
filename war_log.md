@@ -3,7 +3,7 @@
 ## 🏟️ Colosseum Week
 
 <details>
-<summary>🏟️ Battle Days 1–4 — 2026-01-22</summary>
+<summary>🏟️ Battle Days 1–4 — 2026-01-23</summary>
 
 | Player | Decks Used Today | Fame |
 |-------|------------------|------|
@@ -26,7 +26,6 @@
 | SG|HAMBI | 0/16 | 0 |
 | Somonkey | 0/16 | 0 |
 | Supercell | 0/16 | 0 |
-| ukw❦ | 0/16 | 0 |
 | ULTRABOY | 0/16 | 0 |
 | Viktor01 | 0/16 | 0 |
 | Wambly | 0/16 | 0 |
@@ -93,6 +92,7 @@
 </details>
 
 ## Week 4
+
 
 
 
@@ -421,7 +421,9 @@
 
 
 
+
 ## Week 3
+
 
 
 
@@ -756,7 +758,9 @@
 
 
 
+
 ## Week 2
+
 
 
 
@@ -1104,7 +1108,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
