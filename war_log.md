@@ -3,7 +3,7 @@
 ## 🏟️ Colosseum Week
 
 <details>
-<summary>🏟️ Battle Days 1–4 — 2026-01-23</summary>
+<summary>🏟️ Battle Days 1–4 — 2026-01-24</summary>
 
 | Player | Decks Used Today | Fame |
 |-------|------------------|------|
@@ -92,6 +92,7 @@
 </details>
 
 ## Week 4
+
 
 
 
@@ -422,7 +423,9 @@
 
 
 
+
 ## Week 3
+
 
 
 
@@ -759,7 +762,9 @@
 
 
 
+
 ## Week 2
+
 
 
 
@@ -1109,7 +1114,9 @@
 
 
 
+
 ## Week 1
+
 
 
 
